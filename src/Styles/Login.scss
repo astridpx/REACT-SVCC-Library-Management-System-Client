@@ -1,0 +1,384 @@
+@import "../Styles/variable";
+// @import url("https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&display=swap");
+
+.loginContainer {
+  height: 100vh;
+  width: 100vw;
+  // background-color: aquamarine;
+  // max-width: 1380px;
+  background-image: url("../assets/svccBG.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.login-overlay {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.178);
+}
+
+.login-wrapper {
+  height: inherit;
+  width: inherit;
+  max-width: 1380px;
+  margin: 0 auto;
+  @include flexCenter(center);
+}
+
+// ANIMATION FOR ADMIN FOR  TRANSITION
+@-webkit-keyframes flip-scale-down-ver {
+  0% {
+    -webkit-transform: scale(1) rotateY(0);
+    transform: scale(1) rotateY(0);
+  }
+  50% {
+    -webkit-transform: scale(0.4) rotateY(-90deg);
+    transform: scale(0.4) rotateY(-90deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateY(-180deg);
+    transform: scale(1) rotateY(0deg);
+  }
+}
+@keyframes flip-scale-down-ver {
+  0% {
+    -webkit-transform: scale(1) rotateY(0);
+    transform: scale(1) rotateY(0);
+  }
+  50% {
+    -webkit-transform: scale(0.4) rotateY(-90deg);
+    transform: scale(0.4) rotateY(-90deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateY(-180deg);
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+.loginform-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 80%;
+  height: 80vh;
+  // background-color: bisque;
+  border: none;
+  border-radius: 15px;
+  max-height: 35rem;
+  overflow: hidden;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+  .adminAnimate {
+    -webkit-animation: flip-scale-down-ver 0.5s linear both;
+    animation: flip-scale-down-ver 0.5s linear both;
+  }
+
+  form {
+    height: 100%;
+    padding: 0;
+    @include flexCenter(unset);
+    text-align: center;
+    flex-direction: column;
+    row-gap: 2rem;
+    // align-items: unset;
+
+    h2 {
+      font-weight: 500;
+      color: gold;
+    }
+    h1 {
+      font-weight: 600;
+      color: $main-bg-clr;
+      //   color: gold;
+    }
+    p {
+      color: $txt-clr1;
+    }
+
+    .formField {
+      //   background-color: peachpuff;
+      width: 80%;
+      margin: 0 auto;
+      //   position: relative;
+
+      .inputField {
+        // position: relative;
+        // margin: 1rem 0;
+        // width: 100%;
+        // background-color: pink;
+        input {
+          position: relative;
+          padding: 10px 15px 10px 45px;
+          margin: 7px auto;
+          // width: 58%;
+          width: 14rem;
+          background-color: #eee;
+          border: 1px solid $txt-clr1;
+          outline: none;
+          border-radius: 15px;
+          font-weight: 500;
+          //   @include flexCenter(unset);
+          text-align: left;
+          align-items: flex-start;
+        }
+
+        #icons {
+          position: absolute;
+          z-index: 1;
+          font-size: 1.3rem;
+          color: $txt-clr1;
+          align-self: flex-start;
+          transform: translate(7px, 13px);
+        }
+        #eye-icon {
+          position: absolute;
+          z-index: 1;
+          color: $txt-clr1;
+          align-self: flex-start;
+          font-size: 1.3rem;
+          transform: translate(-40px, 15px);
+          cursor: pointer;
+          background-color: #eee;
+          width: 2.2rem;
+        }
+
+        .btn-signIn {
+          padding: 10px 20px;
+          // width: 72%;
+          width: 18rem;
+          border-radius: 15px;
+          border: 1px solid transparent;
+          margin: 7px auto;
+          cursor: pointer;
+          transition: 0.3s ease-out;
+          background-color: $main-bg-clr;
+          color: gold;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+
+      .bottomForm {
+        p {
+          color: $txt-clr2;
+          span {
+            cursor: pointer;
+            text-decoration: underline;
+            color: red;
+            padding-left: 5px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+
+  // RIGHT BOX
+  aside {
+    // background-color: aqua;
+    background-image: url("../assets/svcc-login.JPG");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    .overlay {
+      position: absolute;
+      background-color: #6b0f2cdc;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+
+      h3 {
+        color: $txt-clr;
+        padding: 2rem;
+      }
+
+      h1 {
+        color: #e7e7e7;
+        font-size: 3rem;
+        // font-family: "Baskervville", serif;
+        letter-spacing: 4px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-style: italic;
+        font-weight: 400;
+        margin: 2rem 1.5rem;
+      }
+
+      // p {
+      //   color: $txt-clr;
+      //   font-size: 15px;
+      // }
+    }
+  }
+
+  // STUDENT FORM DESIGN
+
+  // ANIMATION FOR SIGN IN FORM TRANSITION
+  @-webkit-keyframes flip-scale-up-ver {
+    0% {
+      -webkit-transform: scale(1) rotateY(0);
+      transform: scale(1) rotateY(0);
+    }
+    50% {
+      -webkit-transform: scale(2.5) rotateY(90deg);
+      transform: scale(2.5) rotateY(90deg);
+    }
+    100% {
+      -webkit-transform: scale(1) rotateY(180deg);
+      transform: scale(1) rotateY(0);
+    }
+  }
+  @keyframes flip-scale-up-ver {
+    0% {
+      -webkit-transform: scale(1) rotateY(0);
+      transform: scale(1) rotateY(0);
+    }
+    50% {
+      -webkit-transform: scale(2.5) rotateY(90deg);
+      transform: scale(2.5) rotateY(90deg);
+    }
+    100% {
+      -webkit-transform: scale(1) rotateY(180deg);
+      transform: scale(1) rotateY(0);
+    }
+  }
+
+  .student-form-wrapper {
+    background-color: #ffffff;
+    -webkit-animation: flip-scale-up-ver 0.5s linear both;
+    animation: flip-scale-up-ver 0.5s linear both;
+    .studentHead {
+      text-align: center;
+
+      h2 {
+        font-weight: 500;
+        color: gold;
+      }
+      h1 {
+        font-weight: 600;
+        color: $main-bg-clr;
+        //   color: gold;
+      }
+      p {
+        color: $txt-clr1;
+      }
+    }
+
+    // FORM
+    .studentForm {
+      padding-top: 1rem;
+      row-gap: 0;
+      height: max-content;
+
+      .stud-signIn {
+        padding: 10px 20px;
+        // width: 72%;
+        width: 18rem;
+        border-radius: 15px;
+        border: 1px solid transparent;
+        margin: 7px auto;
+        cursor: pointer;
+        transition: 0.3s ease-out;
+        background-color: $main-bg-clr;
+        color: gold;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+
+      .studInput {
+        input {
+          position: relative;
+          padding: 10px 15px 10px 45px;
+          margin: 7px auto;
+          // width: 58%;
+          width: 14rem;
+          background-color: #eee;
+          border: 1px solid $txt-clr1;
+          outline: none;
+          border-radius: 15px;
+          font-weight: 500;
+          //   @include flexCenter(unset);
+          text-align: left;
+          align-items: flex-start;
+        }
+
+        #icons {
+          position: absolute;
+          z-index: 1;
+          font-size: 1.3rem;
+          color: $txt-clr1;
+          align-self: flex-start;
+          transform: translate(7px, 13px);
+        }
+        #eye-icon {
+          position: absolute;
+          z-index: 1;
+          color: $txt-clr1;
+          align-self: flex-start;
+          font-size: 1.3rem;
+          transform: translate(-40px, 15px);
+          cursor: pointer;
+          background-color: #eee;
+          width: 2.2rem;
+        }
+      }
+    }
+
+    .formBottom {
+      // height: 6 rem;
+      margin-top: 3rem;
+      text-align: center;
+
+      .signUp-txt {
+        font-style: italic;
+        span {
+          font-weight: 500;
+          color: $main-bg-clr;
+          cursor: pointer;
+          padding-left: 5px;
+          text-decoration: underline;
+        }
+      }
+
+      .loginAdmin-txt {
+        span {
+          font-weight: 500;
+          color: red;
+          cursor: pointer;
+          padding-left: 5px;
+          text-decoration: underline;
+          font-style: italic;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $media-screen) {
+  .loginform-wrapper {
+    grid-template-columns: 1fr;
+    width: 90%;
+
+    form {
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    // STUDENT
+    .student-form-wrapper {
+      .studentHead {
+        h1 {
+          font-size: 1.8em;
+        }
+      }
+    }
+  }
+
+  .loginRightBox {
+    display: none;
+  }
+}
