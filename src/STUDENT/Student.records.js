@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../STUDENT/components/Sidebar.student";
-import Navbar from "../components/Navbar";
+import Navbar from "../STUDENT/components/Navbar.student";
 // import "../Styles/Records.scss";
 import "./Student-styles/StudentRecord.scss";
 import axios from "axios";

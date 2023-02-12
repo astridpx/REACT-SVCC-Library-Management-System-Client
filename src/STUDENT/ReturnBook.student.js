@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Sidebar from "./components/Sidebar.student";
-import Navbar from "../components/Navbar";
+import Navbar from "../STUDENT/components/Navbar.student";
 // import "../Css/ReturnBook.css";
 import "../Styles/ReturnBook.scss";
 import { QrReader } from "react-qr-reader";

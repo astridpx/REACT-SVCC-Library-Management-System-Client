@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar.student";
-import Navbar from "../components/Navbar";
+import Navbar from "../STUDENT/components/Navbar.student";
 import "../Styles/IssueBook.scss";
 import { FormatISBN } from "../helpers/isbn.format";
 import { FormatStudID } from "../helpers/studID.format";

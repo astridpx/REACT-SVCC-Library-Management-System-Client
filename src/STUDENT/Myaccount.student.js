@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "./components/Sidebar.student";
-import Navbar from "../components/Navbar";
+import Navbar from "../STUDENT/components/Navbar.student";
 import "../Styles/Profile.scss";
 // import ProImg from "../assets/Adminprofile.png";
 import ProImg from "../assets/user.png";
