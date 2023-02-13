@@ -1,1 +1,10 @@
-{"version":3,"sourceRoot":"","sources":["../pages/UserPending/userPendung.scss"],"names":[],"mappings":"AAAA,GACE,eACA,cACA,aACA","file":"userPendung.css"}
+{
+  "version": 3,
+  "sourceRoot": "",
+  "sources": [
+    "../pages/UserPending/userPendung.scss"
+  ],
+  "names": [],
+  "mappings": "AAAA,GACE,eACA,cACA,aACA",
+  "file": "userPendung.css"
+}
