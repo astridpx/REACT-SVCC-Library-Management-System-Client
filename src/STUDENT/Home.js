@@ -1,7 +1,6 @@
 import React from "react";
 import Sidebar from "./components/Sidebar.student";
 import Navbar from "../STUDENT/components/Navbar.student";
-
 import "./Student-styles/home.scss";
 
 const Home = () => {

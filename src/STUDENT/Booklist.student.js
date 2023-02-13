@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../STUDENT/components/Sidebar.student";
-// import Navbar from "../components/Navbar";
 import Navbar from "../STUDENT/components/Navbar.student";
 // import "../Css/AvailableBooks.css";
 import "../Styles/AvailableBooks.scss";
