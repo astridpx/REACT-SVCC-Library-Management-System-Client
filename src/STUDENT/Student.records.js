@@ -72,7 +72,13 @@ const Records = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {recordList.length > 0 ? recordList : <h4>No Result</h4>}
+                  {recordList.length > 0 ? (
+                    recordList
+                  ) : (
+                    <tr>
+                      <td>NO CURRENT RECORD </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
