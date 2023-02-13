@@ -3,7 +3,7 @@
 .signUp-wrapper {
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;
-  // width: 80%;
+  width: 80%;
   height: 80vh;
   background-color: $main-bg-clr;
   border: none;
@@ -163,6 +163,7 @@
 @media only screen and (max-width: $media-screen) {
   .signUp-wrapper {
     grid-template-columns: 1fr;
+    width: 95vw;
   }
   .signUp-LeftBox {
     display: none;
