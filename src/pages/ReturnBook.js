@@ -9,6 +9,7 @@ import { FormatISBN } from "../helpers/isbn.format";
 import { FormatStudID } from "../helpers/studID.format";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Toast } from "../components/SweetAlert/SweetAlert";
 
 const ReturnBook = () => {
   const [isbn, setISBN] = useState("");
@@ -23,19 +24,6 @@ const ReturnBook = () => {
   const futureDate = date.getDate();
   date.setDate(futureDate);
   const today = date.toLocaleDateString("en-CA");
-
-  // SWEET ALERT
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "center",
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
 
   // SCAN DATA DECODE
   const [scan, setScan] = useState(false);
@@ -68,6 +56,10 @@ const ReturnBook = () => {
                 Toast.fire({
                   icon: "error",
                   title: err.response.data.message,
+                  didOpen: (toast) => {
+                    toast.addEventListener("mouseenter", Swal.stopTimer);
+                    toast.addEventListener("mouseleave", Swal.resumeTimer);
+                  },
                 });
               });
             // window.location.reload(false);
@@ -113,6 +105,10 @@ const ReturnBook = () => {
         Toast.fire({
           icon: "error",
           title: err.response.data.message,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
         });
       });
   };

@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import "../Styles/Records.scss";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Toast } from "../components/SweetAlert/SweetAlert";
 // import DateTime from "../components/Clock";
 
 const Records = () => {
@@ -20,18 +21,6 @@ const Records = () => {
     var now = new Date();
     return checkDate < now;
   }
-
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "center",
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
 
   useEffect(() => {
     let recordCleanup = true;
@@ -89,6 +78,16 @@ const Records = () => {
                               icon: "error",
                               showCancelButton: false,
                               title: err.response.data.message,
+                              didOpen: (toast) => {
+                                toast.addEventListener(
+                                  "mouseenter",
+                                  Swal.stopTimer
+                                );
+                                toast.addEventListener(
+                                  "mouseleave",
+                                  Swal.resumeTimer
+                                );
+                              },
                               // title: email,
                             });
                           }
@@ -167,6 +166,16 @@ const Records = () => {
                                 icon: "error",
                                 showCancelButton: false,
                                 title: err.response.data.message,
+                                didOpen: (toast) => {
+                                  toast.addEventListener(
+                                    "mouseenter",
+                                    Swal.stopTimer
+                                  );
+                                  toast.addEventListener(
+                                    "mouseleave",
+                                    Swal.resumeTimer
+                                  );
+                                },
                                 // title: email,
                               });
                             }

@@ -5,6 +5,7 @@ import { AiOutlineLock } from "react-icons/ai";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Toast } from "../../../components/SweetAlert/SweetAlert";
 
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -25,19 +26,6 @@ const Studentform = ({ AdminStudentloginForm }) => {
   // REDUX DISPATCH
   const dispatch = useDispatch();
 
-  // SWEET ALERT
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "center",
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
-
   const HandleSUbmitStudentLogin = (e) => {
     e.preventDefault();
 
@@ -55,10 +43,6 @@ const Studentform = ({ AdminStudentloginForm }) => {
         Toast.fire({
           icon: "success",
           title: result.data.message,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.resumeTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
         })
           .then(() => {
             dispatch(update({ signUpShowValue: false }));
@@ -73,6 +57,10 @@ const Studentform = ({ AdminStudentloginForm }) => {
         Toast.fire({
           icon: "error",
           title: error.response.data.message,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
         });
       });
   };

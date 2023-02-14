@@ -3,6 +3,7 @@ import "./ProfileEdit.scss";
 import React, { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Toast } from "../SweetAlert/SweetAlert";
 import { FormatStudID } from "../../helpers/studID.format";
 
 export const ProfileEdit = (props) => {
@@ -24,19 +25,6 @@ export const ProfileEdit = (props) => {
     const formatedAccID = FormatStudID(e.target.value);
     setAccId("AY" + formatedAccID);
   };
-
-  // SWEET ALERT
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "center",
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
 
   const HandleSubmit = (e) => {
     e.preventDefault();
@@ -67,6 +55,10 @@ export const ProfileEdit = (props) => {
         Toast.fire({
           icon: "error",
           title: err.response.data.message,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
         });
       });
   };

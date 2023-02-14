@@ -8,6 +8,7 @@ import ProImg from "../assets/user.png";
 import "../components/Profile/ProfileView.scss";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Toast } from "../components/SweetAlert/SweetAlert";
 
 // navtab
 import { ProfileView } from "../STUDENT/components/Profile-Student/Student.profile";
@@ -36,19 +37,6 @@ const Profile = () => {
   const [upload, setUpload] = useState(false);
   const uploadRef = useRef();
 
-  // SWEET ALERT
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "center",
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      // toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
-
   // HANDLE UPLOADING PROFILE PICTURE
   const handleProfilePictureUpdate = (e) => {
     e.preventDefault();
@@ -74,6 +62,10 @@ const Profile = () => {
         Toast.fire({
           icon: "error",
           title: err.response.data.message,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
         });
       });
   };

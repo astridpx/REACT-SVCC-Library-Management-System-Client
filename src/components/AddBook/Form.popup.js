@@ -6,6 +6,7 @@ import { IoClose } from "react-icons/io5";
 import { FormatISBN } from "../../helpers/isbn.format";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Toast } from "../SweetAlert/SweetAlert";
 
 export const FormAdd = ({ hideForm }) => {
   const [isbn, setIsbn] = useState("");
@@ -38,17 +39,6 @@ export const FormAdd = ({ hideForm }) => {
     // API INTEGRATIOn
     axios(configData)
       .then((res) => {
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "center",
-          showConfirmButton: false,
-          timer: 2000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
         Toast.fire(
           {
             icon: "success",
@@ -58,20 +48,13 @@ export const FormAdd = ({ hideForm }) => {
         ).then(() => window.location.reload(false));
       })
       .catch((error) => {
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "center",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
+        Toast.fire({
+          icon: "error",
+          title: error.response.data.message,
           didOpen: (toast) => {
             toast.addEventListener("mouseenter", Swal.stopTimer);
             toast.addEventListener("mouseleave", Swal.resumeTimer);
           },
-        });
-        Toast.fire({
-          icon: "error",
-          title: error.response.data.message,
         });
       });
   };

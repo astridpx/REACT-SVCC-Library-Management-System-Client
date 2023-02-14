@@ -7,6 +7,7 @@ import BtnBack from "../../../assets/Arrow-back.svg";
 import { FormatStudID } from "../../../helpers/studID.format";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Toast } from "../../../components/SweetAlert/SweetAlert";
 
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -35,19 +36,6 @@ const StudentRegister = () => {
     setStudId("AY" + formatedStudID);
   };
 
-  // SWEET ALERT
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "center",
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
-
   const HandleSubmitSignUp = (e) => {
     e.preventDefault();
 
@@ -75,6 +63,10 @@ const StudentRegister = () => {
         Toast.fire({
           icon: "error",
           title: error.response.data.message,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
         });
       });
   };

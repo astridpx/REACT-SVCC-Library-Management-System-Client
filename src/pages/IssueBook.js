@@ -7,8 +7,9 @@ import { FormatISBN } from "../helpers/isbn.format";
 import { FormatStudID } from "../helpers/studID.format";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Toast } from "../components/SweetAlert/SweetAlert";
 // import Qr from "../assets/profile.png";
-import QRCode from "react-qr-code";
+// import QRCode from "react-qr-code";
 import { QrReader } from "react-qr-reader";
 
 const IssueBook = () => {
@@ -34,19 +35,6 @@ const IssueBook = () => {
   useEffect(() => {
     issueRef.current.focus();
   }, []);
-
-  // SWEET ALERT
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "center",
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
 
   // ISSUE BOOK API INTEGRATION
   const configData = {
@@ -76,6 +64,10 @@ const IssueBook = () => {
         Toast.fire({
           icon: "error",
           title: err.response.data.message,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
         });
         // .then(() => window.location.reload(false));
       });

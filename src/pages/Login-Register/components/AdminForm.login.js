@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Toast } from "../../../components/SweetAlert/SweetAlert";
 
 import { FiUser } from "react-icons/fi";
 import { AiOutlineLock } from "react-icons/ai";
@@ -17,19 +18,6 @@ const AdminForm = ({ AdminStudentloginForm }) => {
   const ShowHidePassword = () => {
     setShowHide(!showHide);
   };
-
-  // SWEET ALERT
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "center",
-    showConfirmButton: false,
-    timer: 1000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
 
   const HandleSubmitAdminLogin = (e) => {
     e.preventDefault();
@@ -59,6 +47,10 @@ const AdminForm = ({ AdminStudentloginForm }) => {
         Toast.fire({
           icon: "error",
           title: error.response.data.message,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
         });
       });
   };

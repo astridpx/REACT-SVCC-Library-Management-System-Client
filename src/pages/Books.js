@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 // import "../Css/Books.css";
 import "../Styles/Books.scss";
-
+import { Toast } from "../components/SweetAlert/SweetAlert";
 import { GrAdd } from "react-icons/gr";
 import { FormAdd } from "../components/AddBook/Form.popup";
 import { EditBookForm } from "../components/EditBook/EditBook";
@@ -135,21 +135,13 @@ const Books = () => {
           .then((res) => Swal.fire("Deleted!", res.data, "success"))
           .then(() => window.location.reload(false))
           .catch((error) => {
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "center",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
+            Toast.fire({
+              icon: "error",
+              title: error.response.data.message,
               didOpen: (toast) => {
                 toast.addEventListener("mouseenter", Swal.stopTimer);
                 toast.addEventListener("mouseleave", Swal.resumeTimer);
               },
-            });
-
-            Toast.fire({
-              icon: "error",
-              title: error,
             });
           });
       }

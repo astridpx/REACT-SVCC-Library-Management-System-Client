@@ -9,6 +9,7 @@ import ProImg from "../assets/profile.png";
 import "../components/Profile/ProfileView.scss";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Toast } from "../components/SweetAlert/SweetAlert";
 
 // navtab
 import { ProfileView } from "../components/Profile/Profile.view";
@@ -35,19 +36,6 @@ const Profile = () => {
   // show hide upload
   const [upload, setUpload] = useState(false);
   const uploadRef = useRef();
-
-  // SWEET ALERT
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "center",
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
 
   // GETTING THE DATA FROM CHILD COMPONENT (PROFILE VIEW)
   const adminInfoFunction = (adminInfoPass) => {
@@ -83,6 +71,10 @@ const Profile = () => {
         Toast.fire({
           icon: "error",
           title: err.response.data.message,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
         });
       });
   };

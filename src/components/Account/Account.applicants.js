@@ -2,22 +2,10 @@ import React, { useEffect, useState } from "react";
 import Profile from "../../assets/user1.png";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Toast } from "../SweetAlert/SweetAlert";
 
 export const AccountApplicants = () => {
   const [applicantList, setApplicantList] = useState("");
-
-  // SWEET ALERT
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "center",
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
 
   useEffect(() => {
     let applicantCleanpUp = true;
@@ -68,6 +56,16 @@ export const AccountApplicants = () => {
                           Toast.fire({
                             icon: "error",
                             title: err.response.data.message,
+                            didOpen: (toast) => {
+                              toast.addEventListener(
+                                "mouseenter",
+                                Swal.stopTimer
+                              );
+                              toast.addEventListener(
+                                "mouseleave",
+                                Swal.resumeTimer
+                              );
+                            },
                           });
                         });
                     }
@@ -104,6 +102,16 @@ export const AccountApplicants = () => {
                           Toast.fire({
                             icon: "error",
                             title: err.response.data.message,
+                            didOpen: (toast) => {
+                              toast.addEventListener(
+                                "mouseenter",
+                                Swal.stopTimer
+                              );
+                              toast.addEventListener(
+                                "mouseleave",
+                                Swal.resumeTimer
+                              );
+                            },
                           });
                         });
                     }

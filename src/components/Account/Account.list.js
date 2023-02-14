@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Profile from "../../assets/user1.png";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Toast } from "../SweetAlert/SweetAlert";
 
 // REDUX
 import { useSelector } from "react-redux";
@@ -10,18 +11,6 @@ export const AccountList = () => {
   const email = useSelector((state) => state.userAcc.email);
   // const profile = useSelector((state) => state.userAcc.profileImg);
   const [accountList, setAccountList] = useState("");
-
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "center",
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
 
   useEffect(() => {
     let accListCleanup = true;
@@ -81,6 +70,16 @@ export const AccountList = () => {
                               icon: "error",
                               showCancelButton: false,
                               title: err.response.data.message,
+                              didOpen: (toast) => {
+                                toast.addEventListener(
+                                  "mouseenter",
+                                  Swal.stopTimer
+                                );
+                                toast.addEventListener(
+                                  "mouseleave",
+                                  Swal.resumeTimer
+                                );
+                              },
                             });
                           }
                         });
@@ -99,6 +98,7 @@ export const AccountList = () => {
 
     return () => (accListCleanup = false);
   }, []);
+
   return (
     <table>
       <thead>
