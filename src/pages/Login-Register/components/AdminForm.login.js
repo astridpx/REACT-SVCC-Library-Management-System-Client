@@ -19,7 +19,7 @@ const AdminForm = ({ AdminStudentloginForm }) => {
     setShowHide(!showHide);
   };
 
-  const HandleSubmitAdminLogin = (e) => {
+  const HandleSubmitAdminLogin = async (e) => {
     e.preventDefault();
 
     // axios.defaults.withCredentials = true;
@@ -31,7 +31,7 @@ const AdminForm = ({ AdminStudentloginForm }) => {
         password,
       },
     };
-    axios(dataConfig)
+    await axios(dataConfig)
       .then((result) => {
         Toast.fire({
           icon: "success",
