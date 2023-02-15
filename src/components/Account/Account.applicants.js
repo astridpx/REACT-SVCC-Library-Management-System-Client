@@ -9,7 +9,7 @@ export const AccountApplicants = () => {
 
   useEffect(() => {
     let applicantCleanpUp = true;
-    const url = `{process.env.REACT_APP_API_URL}/students/applicants`;
+    const url = `${process.env.REACT_APP_API_URL}/students/applicants`;
 
     axios.get(url).then((result) => {
       const applicants = result.data.map((props) => {
