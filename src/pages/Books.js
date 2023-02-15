@@ -52,7 +52,7 @@ const Books = () => {
   // axios.default.withCredentials = true;
   useEffect(() => {
     let bookCleanup = true;
-    const url = "http://localhost:5000/books";
+    const url = `${process.env.REACT_APP_API_URL}/books`;
     axios
       .get(url)
       .then((result) => {
@@ -86,7 +86,7 @@ const Books = () => {
   const HandleSearchClick = () => {
     axios({
       method: "get",
-      url: `http://localhost:5000/books/search/all-books/${searchKey}`,
+      url: `${process.env.REACT_APP_API_URL}/books/search/all-books/${searchKey}`,
     })
       .then((result) => {
         console.log(result);
@@ -117,7 +117,7 @@ const Books = () => {
   const DeleteBook = (props) => {
     const configData = {
       method: "delete",
-      url: `http://localhost:5000/books/deleteBook/${props.BOOK_ID}`,
+      url: `${process.env.REACT_APP_API_URL}/books/deleteBook/${props.BOOK_ID}`,
     };
 
     Swal.fire({

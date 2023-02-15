@@ -45,9 +45,9 @@ const Profile = () => {
 
     formData.append("image", e.target.files[0]);
 
-    const url = `http://localhost:5000/profile-upload/student/${localStorage.getItem(
-      "id"
-    )}`;
+    const url = `${
+      process.env.REACT_APP_API_URL
+    }/profile-upload/student/${localStorage.getItem("id")}`;
 
     axios
       .put(url, formData)

@@ -38,7 +38,7 @@ const ReturnBook = () => {
       <QrReader
         onResult={(result, error) => {
           if (result) {
-            const url = `http://localhost:5000/allRecords/return/data-scan/${result.text}`;
+            const url = `${process.env.REACT_APP_API_URL}/allRecords/return/data-scan/${result.text}`;
 
             axios
               .get(url)
@@ -83,7 +83,7 @@ const ReturnBook = () => {
 
   const configData = {
     method: "delete",
-    url: "http://localhost:5000/allRecords/return/",
+    url: `${process.env.REACT_APP_API_URL}/allRecords/return/`,
     data: {
       isbn: isbn || isbnScan,
       title,

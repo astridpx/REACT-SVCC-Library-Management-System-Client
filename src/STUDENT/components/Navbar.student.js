@@ -35,7 +35,7 @@ const Navbar = () => {
 
     axios({
       method: "post",
-      url: `http://localhost:5000/token/${token}`,
+      url: `${process.env.REACT_APP_API_URL}/token/${token}`,
     })
       .then((result) => {
         !result.data.isValid && handleLogout();

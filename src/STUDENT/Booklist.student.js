@@ -25,7 +25,7 @@ const AvailableBooks = () => {
 
   useEffect(() => {
     let availCleanup = true;
-    const url = "http://localhost:5000/books/availableBooks";
+    const url = `${process.env.REACT_APP_API_URL}/books/availableBooks`;
 
     axios
       .get(url)
@@ -66,7 +66,7 @@ const AvailableBooks = () => {
   const HandleSearchClick = () => {
     axios({
       method: "get",
-      url: `http://localhost:5000/books/search/availableBooks/${searchKey}`,
+      url: `${process.env.REACT_APP_API_URL}/books/search/availableBooks/${searchKey}`,
     })
       .then((result) => {
         const booksFilter = result.data.map((props) => {

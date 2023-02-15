@@ -9,7 +9,7 @@ export const AccountApplicants = () => {
 
   useEffect(() => {
     let applicantCleanpUp = true;
-    const url = "http://localhost:5000/students/applicants";
+    const url = `{process.env.REACT_APP_API_URL}/students/applicants`;
 
     axios.get(url).then((result) => {
       const applicants = result.data.map((props) => {
@@ -32,7 +32,7 @@ export const AccountApplicants = () => {
                 id="accept"
                 onClick={(e) => {
                   e.preventDefault();
-                  const url = `http://localhost:5000/students/accept/${props.STUD_ID}`;
+                  const url = `${process.env.REACT_APP_API_URL}/students/accept/${props.STUD_ID}`;
 
                   Swal.fire({
                     title: "Are you sure you want to accept this person?",
@@ -78,7 +78,7 @@ export const AccountApplicants = () => {
                 id="reject"
                 onClick={(e) => {
                   e.preventDefault();
-                  const url = `http://localhost:5000/students/reject/${props.STUD_ID}`;
+                  const url = `${process.env.REACT_APP_API_URL}/students/reject/${props.STUD_ID}`;
 
                   Swal.fire({
                     title: "Are you sure you want to reject this person?",

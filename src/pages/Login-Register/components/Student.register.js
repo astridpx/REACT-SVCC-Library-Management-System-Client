@@ -40,7 +40,7 @@ const StudentRegister = () => {
     e.preventDefault();
 
     const dataConfig = {
-      url: "http://localhost:5000/students/register",
+      url: `${process.env.REACT_APP_API_URL}/students/register`,
       method: "post",
       data: {
         name,

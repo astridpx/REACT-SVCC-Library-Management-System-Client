@@ -30,9 +30,9 @@ export const ProfileEdit = (props) => {
 
     const configData = {
       method: "put",
-      url: `http://localhost:5000/students/update/${localStorage.getItem(
-        "id"
-      )}`,
+      url: `${
+        process.env.REACT_APP_API_URL
+      }/students/update/${localStorage.getItem("id")}`,
       data: {
         name,
         stud_no: accId,

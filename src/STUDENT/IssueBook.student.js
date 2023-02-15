@@ -44,7 +44,7 @@ const IssueBook = () => {
   // ISSUE BOOK API INTEGRATION
   const configData = {
     method: "post",
-    url: "http://localhost:5000/issueBook/issue",
+    url: `${process.env.REACT_APP_API_URL}/issueBook/issue`,
     data: {
       isbn,
       title,
@@ -83,7 +83,7 @@ const IssueBook = () => {
       <QrReader
         onResult={(result, error) => {
           if (result) {
-            const url = `http://localhost:5000/issueBook/issue/getBook/${result}`;
+            const url = `${process.env.REACT_APP_API_URL}/issueBook/issue/getBook/${result}`;
             axios
               .get(url)
               .then(async (results) => {

@@ -46,13 +46,13 @@ const Sidebar = (props) => {
   const dispatch = useDispatch();
 
   const dataConfig = {
-    url: "http://localhost:5000/admin",
+    url: `${process.env.REACT_APP_API_URL}/admin`,
     method: "get",
   };
-  const url_member = "http://localhost:5000/students/";
-  const url_applicants = "http://localhost:5000/students/applicants";
-  const url_issue = "http://localhost:5000/allRecords/";
-  const url_books = "http://localhost:5000/books";
+  const url_member = `${process.env.REACT_APP_API_URL}/students/`;
+  const url_applicants = `${process.env.REACT_APP_API_URL}/students/applicants`;
+  const url_issue = `${process.env.REACT_APP_API_URL}/allRecords/`;
+  const url_books = `${process.env.REACT_APP_API_URL}/books`;
 
   useEffect(() => {
     let userCleanUp = true;
@@ -64,7 +64,8 @@ const Sidebar = (props) => {
           dispatch(updatename({ name: props.name }));
           dispatch(
             profileImg_src({
-              profileImg: "http://localhost:5000/Images/" + props.image,
+              profileImg:
+                `${process.env.REACT_APP_API_URL}/Images/` + props.image,
             })
           );
           setImg(result.data[0].image);

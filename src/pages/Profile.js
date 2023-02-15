@@ -56,7 +56,7 @@ const Profile = () => {
 
     formData.append("image", e.target.files[0]);
 
-    const url = "http://localhost:5000/profile-upload/1";
+    const url = `${process.env.REACT_APP_API_URL}/profile-upload/1`;
 
     axios
       .put(url, formData)

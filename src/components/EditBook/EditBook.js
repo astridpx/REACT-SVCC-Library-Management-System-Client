@@ -25,7 +25,7 @@ export const EditBookForm = ({ hideEditForm, data }) => {
 
   const configuration = {
     method: "put",
-    url: `http://localhost:5000/books/updateBook/${bookId}`,
+    url: `${process.env.REACT_APP_API_URL}/books/updateBook/${bookId}`,
     data: {
       isbn,
       title,

@@ -12,7 +12,7 @@ export const ProfileView = ({ adminInfoFunction }) => {
 
   useEffect(() => {
     let adminCleanUp = true;
-    const url = "http://localhost:5000/admin";
+    const url = `${process.env.REACT_APP_API_URL}/admin`;
 
     axios.get(url).then((result) => {
       // PUSHING THE DATA TO THE ARRAY (ADMININFOPASS)

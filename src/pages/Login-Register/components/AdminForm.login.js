@@ -24,7 +24,7 @@ const AdminForm = ({ AdminStudentloginForm }) => {
 
     // axios.defaults.withCredentials = true;
     const dataConfig = {
-      url: "http://localhost:5000/admin/adminLogin",
+      url: `${process.env.REACT_APP_API_URL}/admin/adminLogin`,
       method: "POST",
       data: {
         email,

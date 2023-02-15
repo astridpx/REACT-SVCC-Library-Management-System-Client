@@ -30,7 +30,7 @@ const Studentform = ({ AdminStudentloginForm }) => {
     e.preventDefault();
 
     const dataConfig = {
-      url: "http://localhost:5000/students/login",
+      url: `${process.env.REACT_APP_API_URL}/students/login`,
       method: "post",
       data: {
         email,

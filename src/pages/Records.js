@@ -24,7 +24,7 @@ const Records = () => {
 
   useEffect(() => {
     let recordCleanup = true;
-    const url = "http://localhost:5000/allRecords/";
+    const url = `${process.env.REACT_APP_API_URL}/allRecords/`;
 
     axios.get(url).then((result) => {
       const resultRecord = result.data.map((props) => {
@@ -57,7 +57,7 @@ const Records = () => {
                     if (confirmPassword.isConfirmed) {
                       const configData = {
                         method: "delete",
-                        url: `http://localhost:5000/allRecords/delete/${props.ISSUE_ID}`,
+                        url: `${process.env.REACT_APP_API_URL}/allRecords/delete/${props.ISSUE_ID}`,
                         data: {
                           email: email,
                           password: confirmPassword.value,

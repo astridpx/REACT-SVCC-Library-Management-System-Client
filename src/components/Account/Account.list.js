@@ -14,7 +14,7 @@ export const AccountList = () => {
 
   useEffect(() => {
     let accListCleanup = true;
-    const url = "http://localhost:5000/students/";
+    const url = `${process.env.REACT_APP_API_URL}/students/`;
 
     axios.get(url).then((result) => {
       const acclist = result.data.map((props) => {
@@ -24,7 +24,7 @@ export const AccountList = () => {
               <img
                 src={
                   props.image.length > 0
-                    ? "http://localhost:5000/Images/" + props.image
+                    ? `${process.env.REACT_APP_API_URL}/Images/` + props.image
                     : Profile
                 }
                 alt=""
@@ -50,7 +50,7 @@ export const AccountList = () => {
                     if (confirmPassword.isConfirmed) {
                       const configData = {
                         method: "delete",
-                        url: `http://localhost:5000/students/disband/${props.STUD_ID}`,
+                        url: `${process.env.REACT_APP_API_URL}/students/disband/${props.STUD_ID}`,
                         data: {
                           email,
                           password: confirmPassword.value,

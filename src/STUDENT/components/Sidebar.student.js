@@ -40,9 +40,9 @@ const StudentSidebar = (props) => {
   // STUDENT
   useEffect(() => {
     let cleanUp = true;
-    const url = `http://localhost:5000/students/details/${localStorage.getItem(
-      "id"
-    )}`;
+    const url = `${
+      process.env.REACT_APP_API_URL
+    }/students/details/${localStorage.getItem("id")}`;
 
     axios
       .get(url)
@@ -54,7 +54,8 @@ const StudentSidebar = (props) => {
           dispatch(
             profileImg_src({
               profileImg:
-                "http://localhost:5000/Images/" + result.data[0].image,
+                `${process.env.REACT_APP_API_URL}/Images/` +
+                result.data[0].image,
             })
           );
         }

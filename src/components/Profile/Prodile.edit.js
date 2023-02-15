@@ -31,7 +31,7 @@ export const ProfileEdit = (props) => {
 
     const configData = {
       method: "put",
-      url: `http://localhost:5000/admin/update-admin/${props.adminId}`,
+      url: `${process.env.REACT_APP_API_URL}/admin/update-admin/${props.adminId}`,
       data: {
         schoolId: accId,
         name,

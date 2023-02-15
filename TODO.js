@@ -11,3 +11,6 @@
 
 // TODO test sweet alert
 // ? Test sweet alert if it is all working
+
+// TODO QR-Scanner
+// ? Make a temporary cover for the video scanner in issue-book and return-book after scanning
