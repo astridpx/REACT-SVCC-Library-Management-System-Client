@@ -41,6 +41,7 @@ const AdminForm = ({ AdminStudentloginForm }) => {
           .then(() => {
             localStorage.setItem("token", result.data.token);
             localStorage.setItem("userEmail", result.data.email);
+            localStorage.setItem("role", result.data.role);
           })
           .then(() => navigate("/"));
       })

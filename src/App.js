@@ -3,6 +3,8 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Navbar from "./components/Navbar";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import AdminRoutes from "./utils/adminRoutes";
+import StudentRoutes from "./utils/studentRoutes";
 
 // pages
 import Dashboard from "./pages/Dashboard";
@@ -32,31 +34,57 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* <Route element={<PrivateRoutes />}> */}
-          <Route
-            path="/"
-            exact
-            element={role === "student" ? <StudentRecords /> : <Dashboard />}
-          />
+          <Route element={<PrivateRoutes />}>
+            <Route element={<StudentRoutes />}>
+              <Route
+                path="/"
+                exact
+                element={
+                  role === "student" ? <StudentRecords /> : <Dashboard />
+                }
+              />
 
-          {/* STUDENT */}
-          {/* <Route path="/student/home" exact element={<HomeStudent />} /> */}
-          <Route path="/Student-records" exact element={<StudentRecords />} />
-          <Route path="/student/issue" exact element={<IssueStudent />} />
-          <Route path="/student/profile" exact element={<StudentProfile />} />
-          <Route path="/student/return" exact element={<ReturnBookStudent />} />
-          <Route path="/student/booklist" exact element={<BooklistStudent />} />
+              {/* STUDENT */}
+              {/* <Route path="/student/home" exact element={<HomeStudent />} /> */}
+              <Route
+                path="/Student-records"
+                exact
+                element={<StudentRecords />}
+              />
+              <Route path="/student/issue" exact element={<IssueStudent />} />
+              <Route
+                path="/student/profile"
+                exact
+                element={<StudentProfile />}
+              />
+              <Route
+                path="/student/return"
+                exact
+                element={<ReturnBookStudent />}
+              />
+              <Route
+                path="/student/booklist"
+                exact
+                element={<BooklistStudent />}
+              />
+            </Route>
 
-          {/* ADMIN */}
-          <Route path="/Dashboard" exact element={<Dashboard />} />
-          <Route path="/Issue-Books" exact element={<IssueBooks />} />
-          <Route path="/Return-Books" exact element={<ReturnBook />} />
-          <Route path="/Books" exact element={<Book />} />
-          <Route path="/Available-Books" exact element={<AvailableBooks />} />
-          <Route path="/All-Records" exact element={<AllRecord />} />
-          <Route path="/Accounts" exact element={<Account />} />
-          <Route path="/Profile" exact element={<Profile />} />
-          {/* </Route> */}
+            {/* ADMIN */}
+            <Route element={<AdminRoutes />}>
+              <Route path="/" exact element={<Dashboard />} />
+              <Route path="/Issue-Books" exact element={<IssueBooks />} />
+              <Route path="/Return-Books" exact element={<ReturnBook />} />
+              <Route path="/Books" exact element={<Book />} />
+              <Route
+                path="/Available-Books"
+                exact
+                element={<AvailableBooks />}
+              />
+              <Route path="/All-Records" exact element={<AllRecord />} />
+              <Route path="/Accounts" exact element={<Account />} />
+              <Route path="/Profile" exact element={<Profile />} />
+            </Route>
+          </Route>
 
           <Route path="/Login" exact element={<Login />} />
         </Routes>
