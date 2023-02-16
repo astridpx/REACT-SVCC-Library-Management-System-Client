@@ -6,6 +6,7 @@ import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Toast } from "../../../components/SweetAlert/SweetAlert";
+import Loader from "../../../components/Api-Loader/Loading";
 
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -15,6 +16,7 @@ const Studentform = ({ AdminStudentloginForm }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showHide, setShowHide] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,6 +30,7 @@ const Studentform = ({ AdminStudentloginForm }) => {
 
   const HandleSUbmitStudentLogin = async (e) => {
     e.preventDefault();
+    setLoader(true);
 
     const dataConfig = {
       url: `${process.env.REACT_APP_API_URL}/students/login`,
@@ -62,7 +65,8 @@ const Studentform = ({ AdminStudentloginForm }) => {
             toast.addEventListener("mouseleave", Swal.resumeTimer);
           },
         });
-      });
+      })
+      .finally(() => setLoader(false));
   };
 
   return (
@@ -123,8 +127,8 @@ const Studentform = ({ AdminStudentloginForm }) => {
             </label>
           </div>
 
-          <button type="submit" className="stud-signIn">
-            SIGN IN AS A STUDENT
+          <button type="submit" className="stud-signIn" disabled={loader}>
+            {loader ? <Loader /> : "SIGN IN AS A STUDENT"}
           </button>
         </form>
 

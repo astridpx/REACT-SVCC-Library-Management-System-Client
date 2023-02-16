@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Toast } from "../../../components/SweetAlert/SweetAlert";
+import Loader from "../../../components/Api-Loader/Loading";
 
 import { FiUser } from "react-icons/fi";
 import { AiOutlineLock } from "react-icons/ai";
@@ -12,6 +13,7 @@ const AdminForm = ({ AdminStudentloginForm }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showHide, setShowHide] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const navigate = useNavigate();
   // SHOW HIDE PASSWORD FUNCTION
@@ -21,7 +23,7 @@ const AdminForm = ({ AdminStudentloginForm }) => {
 
   const HandleSubmitAdminLogin = async (e) => {
     e.preventDefault();
-
+    setLoader(true);
     // axios.defaults.withCredentials = true;
     const dataConfig = {
       url: `${process.env.REACT_APP_API_URL}/admin/adminLogin`,
@@ -31,6 +33,7 @@ const AdminForm = ({ AdminStudentloginForm }) => {
         password,
       },
     };
+
     await axios(dataConfig)
       .then((result) => {
         console.log(result);
@@ -54,7 +57,8 @@ const AdminForm = ({ AdminStudentloginForm }) => {
             toast.addEventListener("mouseleave", Swal.resumeTimer);
           },
         });
-      });
+      })
+      .finally(() => setLoader(false));
   };
 
   return (
@@ -117,8 +121,8 @@ const AdminForm = ({ AdminStudentloginForm }) => {
             </label>
           </div>
           <div className="inputField">
-            <button type="submit" className="btn-signIn">
-              SIGN IN
+            <button type="submit" className="btn-signIn" disabled={loader}>
+              {loader ? <Loader /> : "SIGN IN"}
             </button>
           </div>
           <div className="bottomForm">

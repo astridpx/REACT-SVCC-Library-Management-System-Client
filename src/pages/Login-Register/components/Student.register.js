@@ -8,6 +8,8 @@ import { FormatStudID } from "../../../helpers/studID.format";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Toast } from "../../../components/SweetAlert/SweetAlert";
+import SpinnerLoader from "../../../components/Api-Loader/Spinner";
+import Loader from "../../../components/Api-Loader/LoadingDark";
 
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -20,6 +22,7 @@ const StudentRegister = () => {
   const [course, setCourse] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loader, setLoader] = useState(false);
 
   const InputRef = useRef();
 
@@ -38,6 +41,7 @@ const StudentRegister = () => {
 
   const HandleSubmitSignUp = async (e) => {
     e.preventDefault();
+    setLoader(true);
 
     const dataConfig = {
       url: `${process.env.REACT_APP_API_URL}/students/register`,
@@ -68,7 +72,8 @@ const StudentRegister = () => {
             toast.addEventListener("mouseleave", Swal.resumeTimer);
           },
         });
-      });
+      })
+      .finally(() => setLoader(false));
   };
 
   return (
@@ -105,6 +110,7 @@ const StudentRegister = () => {
             />
             <img src={StudentLogo} alt="student Logo" className="studentLogo" />
             <h3>Sign Up as Student</h3>
+            {loader && <Loader />}
           </header>
 
           <form
@@ -186,7 +192,7 @@ const StudentRegister = () => {
               />
             </div>
             <div className="signUp-btn-wrap">
-              <button type="submit" className="signUp-btn">
+              <button type="submit" className="signUp-btn" disabled={loader}>
                 Save
               </button>
             </div>
