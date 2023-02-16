@@ -31,9 +31,7 @@ const StudentSidebar = (props) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("id");
-    localStorage.removeItem("role");
+    localStorage.clear();
     window.location.reload();
   };
 
@@ -53,9 +51,7 @@ const StudentSidebar = (props) => {
         if (result.data[0].image) {
           dispatch(
             profileImg_src({
-              profileImg:
-                `${process.env.REACT_APP_API_URL}/Images/` +
-                result.data[0].image,
+              profileImg: result.data[0].image,
             })
           );
         }
@@ -76,7 +72,7 @@ const StudentSidebar = (props) => {
       <div className="sidebar-container">
         <div className="line"></div>
         <div className="profile-box">
-          <div className="image-box">
+          <div className="image-box" onClick={() => alert(profileImg)}>
             <img src={profileImg ? profileImg : ProfileUser} alt="" />
           </div>
           <h3>{name}</h3>

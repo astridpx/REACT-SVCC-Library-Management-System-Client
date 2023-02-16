@@ -64,8 +64,7 @@ const Sidebar = (props) => {
           dispatch(updatename({ name: props.name }));
           dispatch(
             profileImg_src({
-              profileImg:
-                `${process.env.REACT_APP_API_URL}/Images/` + props.image,
+              profileImg: props.image,
             })
           );
           setImg(result.data[0].image);
