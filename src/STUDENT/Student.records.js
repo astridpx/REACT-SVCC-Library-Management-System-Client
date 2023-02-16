@@ -18,9 +18,9 @@ const Records = () => {
 
   useEffect(() => {
     let recordCleanup = true;
-    const url = `http://localhost:5000/students/myRecords/${localStorage.getItem(
-      "id"
-    )}`;
+    const url = `${
+      process.env.REACT_APP_API_URL
+    }/students/myRecords/${localStorage.getItem("id")}`;
 
     axios.get(url).then((result) => {
       const resultRecord = result.data.map((props) => {
