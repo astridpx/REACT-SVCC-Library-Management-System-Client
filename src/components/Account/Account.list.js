@@ -22,11 +22,7 @@ export const AccountList = () => {
           <tr key={props.STUD_ID}>
             <td className="name-box">
               <img
-                src={
-                  props.image.length > 0
-                    ? `${process.env.REACT_APP_API_URL}/Images/` + props.image
-                    : Profile
-                }
+                src={props.image.length > 0 ? props.image : Profile}
                 alt=""
               />
               {props.name}
