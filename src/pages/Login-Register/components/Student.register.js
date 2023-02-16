@@ -36,7 +36,7 @@ const StudentRegister = () => {
     setStudId("AY" + formatedStudID);
   };
 
-  const HandleSubmitSignUp = (e) => {
+  const HandleSubmitSignUp = async (e) => {
     e.preventDefault();
 
     const dataConfig = {
@@ -52,7 +52,7 @@ const StudentRegister = () => {
       },
     };
 
-    axios(dataConfig)
+    await axios(dataConfig)
       .then((result) => {
         Toast.fire({
           icon: "success",

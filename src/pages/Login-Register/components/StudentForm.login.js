@@ -26,7 +26,7 @@ const Studentform = ({ AdminStudentloginForm }) => {
   // REDUX DISPATCH
   const dispatch = useDispatch();
 
-  const HandleSUbmitStudentLogin = (e) => {
+  const HandleSUbmitStudentLogin = async (e) => {
     e.preventDefault();
 
     const dataConfig = {
@@ -38,7 +38,7 @@ const Studentform = ({ AdminStudentloginForm }) => {
       },
     };
 
-    axios(dataConfig)
+    await axios(dataConfig)
       .then((result) => {
         Toast.fire({
           icon: "success",

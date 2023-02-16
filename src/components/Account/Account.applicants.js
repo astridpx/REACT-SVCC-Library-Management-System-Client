@@ -76,11 +76,11 @@ export const AccountApplicants = () => {
               </button>
               <button
                 id="reject"
-                onClick={(e) => {
+                onClick={async (e) => {
                   e.preventDefault();
                   const url = `${process.env.REACT_APP_API_URL}/students/reject/${props.STUD_ID}`;
 
-                  Swal.fire({
+                  await Swal.fire({
                     title: "Are you sure you want to reject this person?",
                     text: "You won't be able to revert this!",
                     icon: "warning",
