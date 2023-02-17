@@ -7,6 +7,15 @@
   align-items: unset;
 }
 
+// Loader
+#BookTbLoader {
+  display: grid;
+  place-content: center;
+  position: absolute;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+}
+
 // btn float
 #btn-add {
   position: absolute;

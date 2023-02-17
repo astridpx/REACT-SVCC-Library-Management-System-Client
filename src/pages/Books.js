@@ -9,6 +9,7 @@ import { FormAdd } from "../components/AddBook/Form.popup";
 import { EditBookForm } from "../components/EditBook/EditBook";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Loader from "../components/Api-Loader/LoadingDark";
 
 const Books = () => {
   const [showBookSearch, setShowBookSearch] = useState(false);
@@ -20,6 +21,7 @@ const Books = () => {
   // const [btnClose, setBtnClose] = useState(true);
   const [showEditForm, setEditForm] = useState(false);
   const [editData, setEditData] = useState([]);
+  const [spiralLoader, setSpiralLoader] = useState(false);
 
   // SHOW / HIDE ADD FORM COMPONENT
   const handleForm = () => {
@@ -53,6 +55,8 @@ const Books = () => {
   useEffect(() => {
     let bookCleanup = true;
     const url = `${process.env.REACT_APP_API_URL}/books`;
+    setSpiralLoader(true);
+
     axios
       .get(url)
       .then((result) => {
@@ -76,7 +80,9 @@ const Books = () => {
         });
         setBooklist(Books);
       })
-      .catch((error) => alert(error));
+      .catch((error) => alert(error))
+      .finally(() => setSpiralLoader(false));
+
     return () => {
       bookCleanup = false;
     };
@@ -206,6 +212,16 @@ const Books = () => {
                   </tr>
                 </thead>
                 <tbody>
+                  {/* Loader */}
+                  {spiralLoader && (
+                    <tr id="BookTbLoader">
+                      <td>
+                        <Loader />
+                      </td>
+                    </tr>
+                  )}
+
+                  {/* Table Data */}
                   {booklist.length > 0 && !showBookSearch ? (
                     booklist
                   ) : showBookSearch ? (
