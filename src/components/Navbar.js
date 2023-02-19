@@ -7,6 +7,7 @@ import axios from "axios";
 
 // icons
 import { MdMenu } from "react-icons/md";
+import { BsPeople } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiHomeAlt } from "react-icons/bi";
 import { RiAccountCircleLine } from "react-icons/ri";
@@ -93,7 +94,7 @@ const Navbar = () => {
                 <Link to="/All-Records">All Records</Link>
               </li>
               <li>
-                <BiHomeAlt className="icons" />
+                <BsPeople className="icons" />
                 <Link to="/Accounts">Accounts</Link>
               </li>
               <li>
