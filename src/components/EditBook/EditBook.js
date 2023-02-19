@@ -18,9 +18,17 @@ export const EditBookForm = ({ hideEditForm, data }) => {
   const valueEdit = false;
   const bookRef = useRef();
 
-  // FOCUS ON FIELD
   useEffect(() => {
     bookRef.current.focus();
+
+    data.map((value) => {
+      setBookId(value.id);
+      setIsbn(value.isbn);
+      setTitle(value.title);
+      setAuthor(value.author);
+      setPublished(value.publish);
+      return value;
+    });
   }, []);
 
   const configuration = {
@@ -35,11 +43,11 @@ export const EditBookForm = ({ hideEditForm, data }) => {
   };
 
   // api request
-  const HandleSubmit = (e) => {
+  const HandleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(data);
+
     // UPDATE API INTEGRATION
-    axios(configuration)
+    await axios(configuration)
       .then((res) => {
         Toast.fire(
           {
@@ -61,90 +69,80 @@ export const EditBookForm = ({ hideEditForm, data }) => {
       });
   };
 
-  const EditForm = data.map((value) => {
-    console.log(value);
-    return (
-      <form onSubmit={(e) => HandleSubmit(e)} key={value.id}>
-        <button
-          id="btn-close"
-          onClick={(e) => {
-            e.preventDefault();
-            hideEditForm(valueEdit);
-          }}
-        >
-          <IoClose />
-        </button>
-        <header>
-          <div className="logo-wrapper">
-            <img src={Logo} />
-          </div>
-          <h2>Update Books</h2>
-        </header>
-
-        <div className="form-field">
-          <label htmlFor="isbn">ISBN</label>
-          <input
-            type="text"
-            id="isbn"
-            ref={bookRef}
-            required
-            autoComplete="off"
-            placeholder={value.isbn}
-            value={isbn}
-            onChange={(e) => {
-              const formatedISBN = FormatISBN(e.target.value);
-              setIsbn(formatedISBN);
-              FormatISBN();
-              setBookId(value.id);
-            }}
-          />
-        </div>
-        <div className="form-field">
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            required
-            autoComplete="off"
-            placeholder={value.title}
-            value={title}
-            onChange={(e) => setTitle(e.target.value.toUpperCase())}
-          />
-        </div>
-        <div className="form-field">
-          <label htmlFor="author">Author</label>
-          <input
-            type="text"
-            id="author"
-            required
-            autoComplete="off"
-            placeholder={value.author}
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-          />
-        </div>
-        <div className="form-field">
-          <label htmlFor="datePublished">Date Published</label>
-          <input
-            type="date"
-            id="datePublished"
-            required
-            autoComplete="off"
-            placeholder={value.publish}
-            value={published}
-            onChange={(e) => setPublished(e.target.value)}
-          />
-        </div>
-        <button id="btn-save" type="submit">
-          Update
-        </button>
-      </form>
-    );
-  });
-
   return (
     <>
-      <div className="form-container">{EditForm}</div>
+      <div className="form-container">
+        <form onSubmit={(e) => HandleSubmit(e)}>
+          <button
+            id="btn-close"
+            onClick={(e) => {
+              e.preventDefault();
+              hideEditForm(valueEdit);
+            }}
+          >
+            <IoClose />
+          </button>
+          <header>
+            <div className="logo-wrapper">
+              <img src={Logo} alt="" />
+            </div>
+            <h2>Update Books</h2>
+          </header>
+
+          <div className="form-field">
+            <label htmlFor="isbn">ISBN</label>
+            <input
+              type="text"
+              id="isbn"
+              ref={bookRef}
+              required
+              autoComplete="off"
+              value={isbn}
+              onChange={(e) => {
+                const formatedISBN = FormatISBN(e.target.value);
+                setIsbn(formatedISBN);
+                FormatISBN();
+              }}
+            />
+          </div>
+          <div className="form-field">
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              required
+              autoComplete="off"
+              value={title}
+              onChange={(e) => setTitle(e.target.value.toUpperCase())}
+            />
+          </div>
+          <div className="form-field">
+            <label htmlFor="author">Author</label>
+            <input
+              type="text"
+              id="author"
+              required
+              autoComplete="off"
+              value={author}
+              onChange={(e) => setAuthor(e.target.value)}
+            />
+          </div>
+          <div className="form-field">
+            <label htmlFor="datePublished">Date Published</label>
+            <input
+              type="date"
+              id="datePublished"
+              required
+              autoComplete="off"
+              value={published}
+              onChange={(e) => setPublished(e.target.value)}
+            />
+          </div>
+          <button id="btn-save" type="submit">
+            Update
+          </button>
+        </form>
+      </div>
     </>
   );
 };
