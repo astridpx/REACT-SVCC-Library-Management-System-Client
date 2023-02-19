@@ -13,9 +13,9 @@ import { QrReader } from "react-qr-reader";
 import { useSelector } from "react-redux";
 
 const IssueBook = () => {
-  const [isbn, setISBN] = useState("");
+  const [isbn, setISBN] = useState("000-0000-000");
   const issueRef = useRef();
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Book Title");
   const [studId, setStudId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -40,7 +40,7 @@ const IssueBook = () => {
   useEffect(() => {
     issueRef.current.focus();
     const issue = JSON.parse(sessionStorage.getItem("issueStud"));
-
+    console.log(issue);
     if (issue) {
       setISBN(issue.isbn);
       setTitle(issue.title);
@@ -150,7 +150,7 @@ const IssueBook = () => {
                 autoComplete="off"
                 // onChange={handleISBN}
                 // value={isbn}
-                value={scan ? isbn : "000-0000-000"}
+                value={isbn}
                 maxLength="12"
                 readOnly
               />
@@ -164,7 +164,7 @@ const IssueBook = () => {
                 required
                 autoComplete="off"
                 // value={title}
-                value={scan ? title : "Book"}
+                value={title}
                 readOnly
                 // onChange={(e) => setTitle(e.target.value.toUpperCase())}
               />
