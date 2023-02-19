@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../Styles/Login.scss";
 
 // COMPONENT FORM
@@ -10,16 +11,24 @@ import StudentSignUp from "./components/Student.register";
 import { useSelector, useDispatch } from "react-redux";
 
 const Login = () => {
+  const navigate = useNavigate();
   const showSignUpValue = useSelector(
     (state) => state.showHideSignUp.signUpShowValue
   );
-
   const [showStudForm, setShowStudForm] = useState(false);
 
   // SHOW HIDE ADMIN STUDENT LOGIN FORM
   const AdminStudentloginForm = (value) => {
     setShowStudForm(value);
   };
+
+  useEffect(() => {
+    const isToken = localStorage.getItem("token");
+
+    if (isToken) {
+      navigate("/");
+    }
+  });
 
   return (
     <>
