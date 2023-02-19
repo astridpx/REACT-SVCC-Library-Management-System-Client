@@ -39,6 +39,7 @@ const Sidebar = (props) => {
 
   const handleLogout = () => {
     localStorage.clear();
+    sessionStorage.clear();
     window.location.reload();
   };
 

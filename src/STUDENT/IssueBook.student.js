@@ -39,6 +39,12 @@ const IssueBook = () => {
 
   useEffect(() => {
     issueRef.current.focus();
+    const issue = JSON.parse(sessionStorage.getItem("issueStud"));
+
+    if (issue) {
+      setISBN(issue.isbn);
+      setTitle(issue.title);
+    }
   }, []);
 
   // ISSUE BOOK API INTEGRATION
@@ -55,9 +61,11 @@ const IssueBook = () => {
       returnDate,
     },
   };
-  const HandleSubmit = (e) => {
+
+  const HandleSubmit = async (e) => {
     e.preventDefault();
-    axios(configData)
+
+    await axios(configData)
       .then((result) => {
         Toast.fire({
           icon: "success",
@@ -81,16 +89,26 @@ const IssueBook = () => {
   const Scanner = (
     <>
       <QrReader
-        onResult={(result, error) => {
+        onResult={async (result, error) => {
           if (result) {
             const url = `${process.env.REACT_APP_API_URL}/issueBook/issue/getBook/${result}`;
-            axios
+
+            await axios
               .get(url)
               .then(async (results) => {
                 await results.data.map((props) => {
                   setISBN(props.isbn);
                   setTitle(props.title);
+                  // set the value in to make it persistent
+                  sessionStorage.setItem(
+                    "issueStud",
+                    JSON.stringify({
+                      isbn: props.isbn,
+                      title: props.title,
+                    })
+                  );
 
+                  window.location.reload(false);
                   return true;
                 });
               })

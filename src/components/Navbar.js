@@ -27,6 +27,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.clear();
+    sessionStorage.clear();
     window.location.reload();
   };
 

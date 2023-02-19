@@ -17,7 +17,6 @@ const ReturnBook = () => {
   const [studId, setStudId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [scanData, setScanData] = useState(false);
   // const navigate = useNavigate();
 
   // DEFAULT DATE RETURN => CURRENT DATE

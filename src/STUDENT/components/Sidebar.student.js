@@ -32,6 +32,7 @@ const StudentSidebar = (props) => {
 
   const handleLogout = () => {
     localStorage.clear();
+    sessionStorage.clear();
     window.location.reload();
   };
 

@@ -90,8 +90,8 @@ const IssueBook = () => {
 
             await axios
               .get(url)
-              .then(async (results) => {
-                await results.data.map((props) => {
+              .then((results) => {
+                results.data.map((props) => {
                   setISBN(props.isbn);
                   setTitle(props.title);
 
