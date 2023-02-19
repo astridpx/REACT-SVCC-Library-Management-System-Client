@@ -13,9 +13,9 @@ import { Toast } from "../components/SweetAlert/SweetAlert";
 import { QrReader } from "react-qr-reader";
 
 const IssueBook = () => {
-  const [isbn, setISBN] = useState("");
+  const [isbn, setISBN] = useState("000-0000-000");
   const issueRef = useRef();
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Book Title");
   const [studId, setStudId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -34,6 +34,12 @@ const IssueBook = () => {
 
   useEffect(() => {
     issueRef.current.focus();
+    const issue = JSON.parse(sessionStorage.getItem("issue"));
+
+    if (issue) {
+      setISBN(issue.isbn);
+      setTitle(issue.title);
+    }
   }, []);
 
   // ISSUE BOOK API INTEGRATION
@@ -50,10 +56,13 @@ const IssueBook = () => {
       returnDate,
     },
   };
-  const HandleSubmit = (e) => {
+  const HandleSubmit = async (e) => {
     e.preventDefault();
-    axios(configData)
+
+    await axios(configData)
       .then((result) => {
+        sessionStorage.removeItem("issue");
+
         Toast.fire({
           icon: "success",
           title: result.data.message,
@@ -69,23 +78,33 @@ const IssueBook = () => {
             toast.addEventListener("mouseleave", Swal.resumeTimer);
           },
         });
-        // .then(() => window.location.reload(false));
       });
   };
 
   const Scanner = (
     <>
       <QrReader
-        onResult={(result, error) => {
+        onResult={async (result, error) => {
           if (result) {
             const url = `${process.env.REACT_APP_API_URL}/issueBook/issue/getBook/${result}`;
-            axios
+
+            await axios
               .get(url)
               .then(async (results) => {
                 await results.data.map((props) => {
                   setISBN(props.isbn);
                   setTitle(props.title);
 
+                  // set the value in to make it persistent
+                  sessionStorage.setItem(
+                    "issue",
+                    JSON.stringify({
+                      isbn: props.isbn,
+                      title: props.title,
+                    })
+                  );
+
+                  window.location.reload(false);
                   return true;
                 });
               })
@@ -122,7 +141,8 @@ const IssueBook = () => {
                 autoComplete="off"
                 // onChange={handleISBN}
                 // value={isbn}
-                value={scan ? isbn : "000-0000-000"}
+                // value={scan ? isbn : "000-0000-000"}
+                value={isbn}
                 maxLength="12"
                 readOnly
               />
@@ -136,7 +156,8 @@ const IssueBook = () => {
                 required
                 autoComplete="off"
                 readOnly
-                value={scan ? title : "Book"}
+                // value={scan ? title : "Book"}
+                value={title}
                 // onChange={(e) => setTitle(e.target.value.toUpperCase())}
               />
             </div>

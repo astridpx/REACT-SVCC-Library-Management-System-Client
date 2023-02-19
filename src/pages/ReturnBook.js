@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
@@ -17,6 +17,7 @@ const ReturnBook = () => {
   const [studId, setStudId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [scanData, setScanData] = useState(false);
   // const navigate = useNavigate();
 
   // DEFAULT DATE RETURN => CURRENT DATE
@@ -33,22 +34,48 @@ const ReturnBook = () => {
   const [nameScan, setNameScan] = useState("");
   const [emailScan, setEmailScan] = useState("");
 
+  useEffect(() => {
+    const scanData = JSON.parse(sessionStorage.getItem("return"));
+
+    if (scanData) {
+      setISBN(scanData.isbn);
+      setTitle(scanData.title);
+      setName(scanData.name);
+      setStudId(scanData.stud_no);
+      setEmail(scanData.email);
+    }
+  });
+
   const Scanner = (
     <>
       <QrReader
-        onResult={(result, error) => {
+        onResult={async (result, error) => {
           if (result) {
             const url = `${process.env.REACT_APP_API_URL}/allRecords/return/data-scan/${result.text}`;
 
-            axios
+            await axios
               .get(url)
-              .then(async (results) => {
-                await results.data.map((props) => {
+              .then((results) => {
+                results.data.map((props) => {
                   setIsbnScan(props.isbn);
                   setTitleScan(props.title);
                   setNameScan(props.name);
                   setStudIdScan(props.stud_no);
                   setEmailScan(props.email);
+
+                  // set the value in to make it persistent
+                  sessionStorage.setItem(
+                    "return",
+                    JSON.stringify({
+                      isbn: props.isbn,
+                      title: props.title,
+                      name: props.name,
+                      stud_no: props.stud_no,
+                      email: props.email,
+                    })
+                  );
+
+                  window.location.reload(false);
                   return true;
                 });
               })
@@ -91,10 +118,14 @@ const ReturnBook = () => {
       email,
     },
   };
-  const HandleSubmit = (e) => {
+
+  const HandleSubmit = async (e) => {
     e.preventDefault();
-    axios(configData)
+
+    await axios(configData)
       .then((result) => {
+        sessionStorage.removeItem("return");
+
         Toast.fire({
           icon: "success",
           title: result.data.message,
