@@ -112,7 +112,7 @@ const Records = () => {
   const HandleSearchClick = () => {
     axios({
       method: "get",
-      url: `http://localhost:5000/allRecords/${searchKey}`,
+      url: `${process.env.REACT_APP_API_URL}/allRecords/${searchKey}`,
     })
       .then((result) => {
         const recordFilter = result.data.map((props) => {
@@ -145,7 +145,7 @@ const Records = () => {
                       if (confirmPassword.isConfirmed) {
                         const configData = {
                           method: "delete",
-                          url: `http://localhost:5000/allRecords/delete/${props.ISSUE_ID}`,
+                          url: `${process.env.REACT_APP_API_URL}/allRecords/delete/${props.ISSUE_ID}`,
                           data: {
                             email: email,
                             password: confirmPassword.value,
