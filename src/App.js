@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import AdminRoutes from "./utils/AdminPrivateRoutes";
 import StudentRoutes from "./utils/StudentPrivateRoutes";
-import LoginTokenRoutes from "./utils/LoginTokenRoutes";
 
 // pages
 import Dashboard from "./pages/Dashboard";
