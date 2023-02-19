@@ -98,12 +98,12 @@ const StudentSidebar = (props) => {
                 Issue Book
               </Link>
             </li>
-            <li>
+            {/* <li>
               <GiBlackBook className="icons" id={props.return} />
               <Link to="/student/return" id={props.return}>
                 Return Book
               </Link>
-            </li>
+            </li> */}
             <li>
               <BiBookAlt className="icons" id={props.availBook} />
               <Link to="/student/booklist" id={props.availBook}>

@@ -78,10 +78,10 @@ const Navbar = () => {
                 <BiBookBookmark className="icons" />
                 <Link to="/student/issue">Issue Book</Link>
               </li>
-              <li>
+              {/* <li>
                 <GiBlackBook className="icons" />
                 <Link to="/student/return">Return Book</Link>
-              </li>
+              </li> */}
               <li>
                 <BiBookAlt className="icons" />
                 <Link to="/student/booklist">Booklist</Link>
