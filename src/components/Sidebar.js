@@ -69,7 +69,7 @@ const Sidebar = (props) => {
             })
           );
           setImg(result.data[0].image);
-          dispatch(updateEmail({ email: props.email }));
+          // dispatch(updateEmail({ email: props.email }));
           return true;
         });
       })

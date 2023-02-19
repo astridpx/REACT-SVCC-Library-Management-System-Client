@@ -6,7 +6,7 @@ export const userAccSlice = createSlice({
     accId: null,
     name: null,
     accNo: null,
-    email: null,
+    email: localStorage.getItem("userEmail"),
     profileImg: null,
     course: null,
     section: null,

@@ -12,6 +12,48 @@ export const AccountList = () => {
   // const profile = useSelector((state) => state.userAcc.profileImg);
   const [accountList, setAccountList] = useState("");
 
+  const HandleDelete = async (e) => {
+    await Swal.fire({
+      title: "Enter Your Password to Confirm Delete",
+      input: "password",
+      icon: "warning",
+      showCancelButton: true,
+      inputPlaceholder: "Enter your password ",
+    }).then((confirmPassword) => {
+      if (confirmPassword.isConfirmed) {
+        const configData = {
+          method: "delete",
+          url: `${process.env.REACT_APP_API_URL}/students/disband/${e}`,
+          data: {
+            email,
+            password: confirmPassword.value,
+          },
+        };
+        axios(configData)
+          .then((result) => {
+            Toast.fire({
+              icon: "success",
+              title: result.data.message,
+            });
+            // .then(() => window.location.reload(false));
+          })
+          .catch((err) => {
+            if (err) {
+              Toast.fire({
+                icon: "error",
+                showCancelButton: false,
+                title: err.response.data.message,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+            }
+          });
+      }
+    });
+  };
+
   useEffect(() => {
     let accListCleanup = true;
     const url = `${process.env.REACT_APP_API_URL}/students/`;
@@ -33,56 +75,7 @@ export const AccountList = () => {
             <td className="email-box">{props.email}</td>
             <td className="action">
               {/* <button id="edit">Edit</button> */}
-              <button
-                id="delete"
-                onClick={() => {
-                  Swal.fire({
-                    title: "Enter Your Password to Confirm Delete",
-                    input: "password",
-                    icon: "warning",
-                    showCancelButton: true,
-                    inputPlaceholder: "Enter your password ",
-                  }).then((confirmPassword) => {
-                    if (confirmPassword.isConfirmed) {
-                      const configData = {
-                        method: "delete",
-                        url: `${process.env.REACT_APP_API_URL}/students/disband/${props.STUD_ID}`,
-                        data: {
-                          email,
-                          password: confirmPassword.value,
-                        },
-                      };
-                      axios(configData)
-                        .then((result) => {
-                          Toast.fire({
-                            icon: "success",
-                            title: result.data.message,
-                          });
-                          // .then(() => window.location.reload(false));
-                        })
-                        .catch((err) => {
-                          if (err) {
-                            Toast.fire({
-                              icon: "error",
-                              showCancelButton: false,
-                              title: err.response.data.message,
-                              didOpen: (toast) => {
-                                toast.addEventListener(
-                                  "mouseenter",
-                                  Swal.stopTimer
-                                );
-                                toast.addEventListener(
-                                  "mouseleave",
-                                  Swal.resumeTimer
-                                );
-                              },
-                            });
-                          }
-                        });
-                    }
-                  });
-                }}
-              >
+              <button id="delete" onClick={() => HandleDelete(props.STUD_ID)}>
                 Delete
               </button>
             </td>
