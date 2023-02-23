@@ -13,12 +13,29 @@ export const ProfileEdit = (props) => {
   const [course, setCourse] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [value, setValue] = useState([]);
 
   // FOCUS INPUT FIELD
   const inputRef = useRef();
 
   useEffect(() => {
     inputRef.current.focus();
+
+    const url = `${process.env.REACT_APP_API_URL}/admin`;
+
+    axios
+      .get(url)
+      .then((result) => {
+        result.data.map((value) => {
+          setAccId(value.school_ID);
+          setName(value.name);
+          setSection(value.section);
+          setCourse(value.course);
+          setEmail(value.email);
+          setPassword();
+        });
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const handleAccId = (e) => {
@@ -48,8 +65,7 @@ export const ProfileEdit = (props) => {
         Toast.fire({
           icon: "success",
           title: result.data.message,
-        });
-        // .then(() => formRef.target.reset());
+        }).then(() => window.location.reload(false));
       })
       .catch((err) => {
         Toast.fire({

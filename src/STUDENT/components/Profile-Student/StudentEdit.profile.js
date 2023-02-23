@@ -4,6 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Toast } from "../../../components/SweetAlert/SweetAlert.js";
 import { FormatStudID } from "../../../helpers/studID.format";
+import { useSelector } from "react-redux";
 
 export const ProfileEdit = (props) => {
   const [accId, setAccId] = useState("");
@@ -13,11 +14,23 @@ export const ProfileEdit = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // REDUX DATA
+  const names = useSelector((state) => state.userAcc.name);
+  const emails = useSelector((state) => state.userAcc.email);
+  const sections = useSelector((state) => state.userAcc.section);
+  const courses = useSelector((state) => state.userAcc.course);
+  const studIds = useSelector((state) => state.userAcc.accNo);
+
   // FOCUS INPUT FIELD
   const inputRef = useRef();
 
   useEffect(() => {
     inputRef.current.focus();
+    setAccId(studIds);
+    setName(names);
+    setSection(sections);
+    setEmail(emails);
+    setCourse(courses);
   }, []);
 
   const handleAccId = (e) => {
@@ -49,8 +62,7 @@ export const ProfileEdit = (props) => {
         Toast.fire({
           icon: "success",
           title: result.data.message,
-        });
-        // .then(() => formRef.target.reset());
+        }).then(() => window.location.reload(false));
       })
       .catch((err) => {
         Toast.fire({
