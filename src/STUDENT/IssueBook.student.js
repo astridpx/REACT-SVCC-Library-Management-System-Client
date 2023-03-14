@@ -83,7 +83,8 @@ const IssueBook = () => {
           },
         });
         // .then(() => window.location.reload(false));
-      });
+      })
+      .finally(() => sessionStorage.clear());
   };
 
   const Scanner = (
