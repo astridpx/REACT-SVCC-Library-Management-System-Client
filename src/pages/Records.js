@@ -16,12 +16,6 @@ const Records = () => {
   const [searchKey, setSearchKey] = useState("");
   const [recordSearch, setRecordSearch] = useState("");
 
-  function isDateBeforeToday(date) {
-    const checkDate = new Date(date);
-    var now = new Date();
-    return checkDate < now;
-  }
-
   useEffect(() => {
     let recordCleanup = true;
     const url = `${process.env.REACT_APP_API_URL}/allRecords/`;
@@ -31,9 +25,7 @@ const Records = () => {
         return (
           <tr
             key={props.ISSUE_ID}
-            className={
-              isDateBeforeToday(props.return_date) ? "not-return" : null
-            }
+            className={props.isDueDate ? "not-return" : null}
           >
             <td>{props.isbn}</td>
             <td>{props.title}</td>
@@ -119,9 +111,7 @@ const Records = () => {
           return (
             <tr
               key={props.ISSUE_ID}
-              className={
-                isDateBeforeToday(props.return_date) ? "not-return" : null
-              }
+              className={props.isDueDate ? "not-return" : null}
             >
               <td>{props.isbn}</td>
               <td>{props.title}</td>
