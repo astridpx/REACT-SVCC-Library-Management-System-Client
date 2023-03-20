@@ -10,12 +10,6 @@ const Records = () => {
   const [recordList, setRecordList] = useState("");
   // const [issueId, setIssueId] = useState("");
 
-  function isDateBeforeToday(date) {
-    const checkDate = new Date(date);
-    var now = new Date();
-    return checkDate < now;
-  }
-
   useEffect(() => {
     let recordCleanup = true;
     const url = `${
@@ -27,9 +21,7 @@ const Records = () => {
         return (
           <tr
             key={props.ISSUE_ID}
-            className={
-              isDateBeforeToday(props.return_date) ? "not-return" : null
-            }
+            className={props.isDueDate ? "not-return" : null}
           >
             <td>{props.isbn}</td>
             <td>{props.title}</td>
