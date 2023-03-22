@@ -15,6 +15,7 @@ import ReturnBook from "./pages/ReturnBook";
 import Book from "./pages/Books";
 import AvailableBooks from "./pages/AvailableBooks";
 import AllRecord from "./pages/Records";
+import ExpireRecord from "./pages/Records-Expired";
 import Account from "./pages/Accounts";
 import Profile from "./pages/Profile";
 
@@ -76,6 +77,11 @@ function App() {
                 element={<AvailableBooks />}
               />
               <Route path="/All-Records" exact element={<AllRecord />} />
+              <Route
+                path="/All-Records/Expired/:isExpired"
+                exact
+                element={<ExpireRecord />}
+              />
               <Route path="/Accounts" exact element={<Account />} />
               <Route path="/Profile" exact element={<Profile />} />
             </Route>

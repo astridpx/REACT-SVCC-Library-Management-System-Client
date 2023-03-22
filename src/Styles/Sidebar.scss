@@ -75,6 +75,41 @@
     width: 100%;
   }
 
+  .dropdown {
+    height: 0;
+    display: none;
+  }
+
+  .dropdown-open {
+    min-height: 2.2rem;
+    display: block;
+    height: max-content;
+  }
+
+  .dropdown-item {
+    padding-left: 3rem;
+  }
+  .dropdown-icon {
+    color: $txt-clr;
+    font-size: 1.2rem;
+  }
+  .dropdown-icon-open {
+    color: $txt-clr;
+    font-size: 1.2rem;
+    animation-name: dropdown-animate-icon;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes dropdown-animate-icon {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(90deg);
+    }
+  }
+
   li {
     list-style: none;
     margin: 0.8rem 0;

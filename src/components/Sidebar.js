@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 // import "../Css/Sidebar.css";
 import "../Styles/Sidebar.scss";
 import Profile from "../assets/profile.png";
@@ -15,6 +15,8 @@ import { BiBookAlt } from "react-icons/bi";
 import { BsPeople } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
 import { GiBlackBook } from "react-icons/gi";
+import { MdPlayArrow } from "react-icons/md";
+import { GoIssueOpened } from "react-icons/go";
 
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -32,11 +34,14 @@ import {
 } from "../Redux/Dashboard-details/DashboardSlice";
 
 const Sidebar = (props) => {
+  let { isExpired } = useParams();
+  const navigate = useNavigate();
+
   // REDUX VALUES
   const name = useSelector((state) => state.userAcc.name);
   const profileImg = useSelector((state) => state.userAcc.profileImg);
   const [img, setImg] = useState("");
-
+  const [showDropdown, setShowDropdown] = useState(false);
   const handleLogout = () => {
     localStorage.clear();
     sessionStorage.clear();
@@ -162,12 +167,47 @@ const Sidebar = (props) => {
                 Available Book
               </Link>
             </li>
-            <li>
-              <TbReportSearch className="icons" id={props.records} />
-              <Link to="/All-Records" id={props.records}>
+            <li
+              onClick={() => {
+                setShowDropdown(!showDropdown);
+                if (isExpired) navigate("/All-Records");
+              }}
+            >
+              <TbReportSearch
+                className="icons"
+                id={props.records || isExpired ? "active" : null}
+              />
+              <Link
+                to="/All-Records"
+                id={props.records || isExpired ? "active" : null}
+              >
                 All Records
               </Link>
+              <MdPlayArrow
+                className={
+                  showDropdown || isExpired
+                    ? "dropdown-icon-open"
+                    : "icons dropdown-icon"
+                }
+                id={props.records}
+              />
             </li>
+            <div
+              className={
+                showDropdown || isExpired ? "dropdown-open" : "dropdown"
+              }
+            >
+              <li className="dropdown-item">
+                <GoIssueOpened className="icons" id={props.expireRecord} />
+                <Link
+                  to={`/All-Records/Expired/${true}`}
+                  id={props.expireRecord}
+                >
+                  Expired Record
+                </Link>
+              </li>
+            </div>
+
             <li>
               <BsPeople className="icons" id={props.account} />
               <Link to="/Accounts" id={props.account}>
