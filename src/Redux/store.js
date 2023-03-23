@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import signUpReducer from "../Redux/SignUpForm-Redux/signUpSlice";
 import userReducer from "../Redux/User/userSlice";
 import dashboardReducer from "../Redux/Dashboard-details/DashboardSlice";
+import bargraphReducer from "../Redux/Dashboard-details/BargraphSlice"
 
 export default configureStore({
   reducer: {
@@ -13,5 +14,8 @@ export default configureStore({
 
     // DASHBOARD CARD DETAILS
     dashboardDetails: dashboardReducer,
+
+    // bargraph dashboard
+    graphSlice: bargraphReducer
   },
 });

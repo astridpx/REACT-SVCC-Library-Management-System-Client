@@ -32,6 +32,15 @@ import {
   issueReducer,
   memberReducer,
 } from "../Redux/Dashboard-details/DashboardSlice";
+import {
+  D1reducer,
+  D2reducer,
+  D3reducer,
+  D4reducer,
+  D5reducer,
+  D6reducer,
+  D7reducer,
+} from "../Redux/Dashboard-details/BargraphSlice";
 
 const Sidebar = (props) => {
   let { isExpired } = useParams();
@@ -59,6 +68,7 @@ const Sidebar = (props) => {
   const url_applicants = `${process.env.REACT_APP_API_URL}/students/applicants`;
   const url_issue = `${process.env.REACT_APP_API_URL}/allRecords/`;
   const url_books = `${process.env.REACT_APP_API_URL}/books`;
+  const url_bargraph = `${process.env.REACT_APP_API_URL}/graph`;
 
   useEffect(() => {
     let userCleanUp = true;
@@ -117,6 +127,25 @@ const Sidebar = (props) => {
       .get(url_books)
       .then((result) => {
         dispatch(booksReducer({ booksNo: result.data.length }));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // Bargraph
+    axios
+      .get(url_bargraph)
+      .then((result) => {
+        result.data.map((days) => {
+          dispatch(D1reducer({ D1: days.D1 }));
+          dispatch(D2reducer({ D2: days.D2 }));
+          dispatch(D3reducer({ D3: days.D3 }));
+          dispatch(D4reducer({ D4: days.D4 }));
+          dispatch(D5reducer({ D5: days.D5 }));
+          dispatch(D6reducer({ D6: days.D6 }));
+          dispatch(D7reducer({ D7: days.D7 }));
+          return days;
+        });
       })
       .catch((err) => {
         console.log(err);

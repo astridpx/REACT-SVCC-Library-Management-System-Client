@@ -10,9 +10,8 @@ import { IoIosPeople } from "react-icons/io";
 import { MdPeopleAlt } from "react-icons/md";
 import { GoIssueOpened } from "react-icons/go";
 import { ImBooks } from "react-icons/im";
-import axios from "axios";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const memberCount = useSelector((state) => state.dashboardDetails.membersNo);
@@ -21,6 +20,7 @@ const Dashboard = () => {
   );
   const issueCount = useSelector((state) => state.dashboardDetails.issueNo);
   const booksCount = useSelector((state) => state.dashboardDetails.booksNo);
+ 
 
   return (
     <>

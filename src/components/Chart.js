@@ -1,5 +1,6 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
 
 // xaxis: {
 //   type: "datetime",
@@ -28,10 +29,14 @@ const past7Days = [...Array(7).keys()].map((index) => {
 });
 
 const BarChart = () => {
+  const { D1, D2, D3, D4, D5, D6, D7 } = useSelector(
+    (state) => state.graphSlice
+  );
+
   const series = [
     {
       name: "Students",
-      data: [20, 29, 10, 47, 40, 10, 50],
+      data: [D1, D2, D3, D4, D5, D6, D7],
     },
   ];
 
