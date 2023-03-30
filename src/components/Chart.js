@@ -44,6 +44,9 @@ const BarChart = () => {
     chart: {
       height: 350,
       type: "bar",
+      toolbar: {
+        show: false,
+      },
       zoom: {
         enabled: false,
       },
