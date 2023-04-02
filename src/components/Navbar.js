@@ -17,6 +17,7 @@ import { TbReportSearch } from "react-icons/tb";
 import { BiBookAlt } from "react-icons/bi";
 import { BiLogOut } from "react-icons/bi";
 import { GiBlackBook } from "react-icons/gi";
+import { GoIssueOpened } from "react-icons/go";
 
 // REDUX
 import { useSelector } from "react-redux";
@@ -93,6 +94,10 @@ const Navbar = () => {
               <li>
                 <TbReportSearch className="icons" />
                 <Link to="/All-Records">All Records</Link>
+              </li>
+              <li>
+                <GoIssueOpened className="icons" />
+                <Link to={`/All-Records/Expired/${true}`}>Expired Records</Link>
               </li>
               <li>
                 <BsPeople className="icons" />
