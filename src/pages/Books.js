@@ -10,6 +10,7 @@ import { EditBookForm } from "../components/EditBook/EditBook";
 import Swal from "sweetalert2";
 import axios from "axios";
 import Loader from "../components/Api-Loader/LoadingDark";
+import { saveAs } from "file-saver";
 
 const Books = () => {
   const [showBookSearch, setShowBookSearch] = useState(false);
@@ -22,6 +23,16 @@ const Books = () => {
   const [showEditForm, setEditForm] = useState(false);
   const [editData, setEditData] = useState([]);
   const [spiralLoader, setSpiralLoader] = useState(false);
+
+  const [isbn, setIsbn] = useState("");
+  const [showQr, setShowQr] = useState("none");
+  const qrImage = `https://chart.googleapis.com/chart?cht=qr&chs=500x500&chl=${isbn}`;
+  const DownloadQr = (value) => {
+    saveAs(
+      `https://chart.googleapis.com/chart?cht=qr&chs=500x500&chl=${value}`,
+      "SVCC-Book-QR" + new Date() + ".jpg"
+    );
+  };
 
   // SHOW / HIDE ADD FORM COMPONENT
   const handleForm = () => {
@@ -67,7 +78,21 @@ const Books = () => {
               <td>{props.title}</td>
               <td className="author-box">{props.author}</td>
               <td>{props.published_date}</td>
-              <td className="action">
+              <td className="action1">
+                <button
+                  id="view"
+                  onClick={() => {
+                    setIsbn(props.isbn);
+                    setShowQr("flex");
+                  }}
+                >
+                  View
+                </button>
+                <button id="download" onClick={() => DownloadQr(props.isbn)}>
+                  Save
+                </button>
+              </td>
+              <td className="action2">
                 <button id="edit" onClick={() => handleEditForm(props)}>
                   Edit
                 </button>
@@ -103,7 +128,21 @@ const Books = () => {
               <td>{props.title}</td>
               <td className="author-box">{props.author}</td>
               <td>{props.published_date}</td>
-              <td className="action">
+              <td className="action1">
+                <button
+                  id="view"
+                  onClick={() => {
+                    setIsbn(props.isbn);
+                    setShowQr("flex");
+                  }}
+                >
+                  View
+                </button>
+                <button id="download" onClick={() => DownloadQr(props.isbn)}>
+                  Save
+                </button>
+              </td>
+              <td className="action2">
                 <button id="edit" onClick={() => handleEditForm(props)}>
                   Edit
                 </button>
@@ -156,6 +195,14 @@ const Books = () => {
 
   return (
     <>
+      <div
+        className="bookQr"
+        style={{ display: showQr }}
+        onClick={() => setShowQr("none")}
+      >
+        {/* <button>Close</button> */}
+        <img src={qrImage} alt="" />
+      </div>
       <Navbar />
       {/* show hide form */}
       {showForm && <FormAdd hideForm={hideForm} />}
@@ -208,7 +255,8 @@ const Books = () => {
                     <th>Book Title</th>
                     <th>Author</th>
                     <th>Date Published</th>
-                    <th>action</th>
+                    <th>Action 1</th>
+                    <th>Action 2</th>
                   </tr>
                 </thead>
                 <tbody>

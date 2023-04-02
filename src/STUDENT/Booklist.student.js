@@ -37,7 +37,7 @@ const AvailableBooks = () => {
               <td>{props.title}</td>
               <td className="author-box">{props.author}</td>
               <td>{props.published_date}</td>
-              <td className="action">
+              {/* <td className="action">
                 <button
                   id="view"
                   onClick={() => {
@@ -50,7 +50,7 @@ const AvailableBooks = () => {
                 <button id="download" onClick={() => DownloadQr(props.isbn)}>
                   Download
                 </button>
-              </td>
+              </td> */}
             </tr>
           );
         });
@@ -76,7 +76,7 @@ const AvailableBooks = () => {
               <td>{props.title}</td>
               <td className="author-box">{props.author}</td>
               <td>{props.published_date}</td>
-              <td className="action">
+              {/* <td className="action">
                 <button
                   id="view"
                   onClick={() => {
@@ -89,7 +89,7 @@ const AvailableBooks = () => {
                 <button id="download" onClick={() => DownloadQr(props.isbn)}>
                   Download
                 </button>
-              </td>
+              </td> */}
             </tr>
           );
         });
@@ -147,7 +147,7 @@ const AvailableBooks = () => {
                     <th>Book Title</th>
                     <th>Author</th>
                     <th>Date Published</th>
-                    <th>Action</th>
+                    {/* <th>Action</th> */}
                   </tr>
                 </thead>
                 <tbody>
