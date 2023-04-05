@@ -25,7 +25,7 @@ const Records = () => {
           >
             <td>{props.isbn}</td>
             <td>{props.title}</td>
-            <td className="name-box">{props.name}</td>
+            <td>₱ {props.payfines}</td>
             <td className="email-box">{props.email}</td>
             <td>{new Date(props.issue_date).toDateString()}</td>
             <td>{new Date(props.return_date).toDateString()}</td>
@@ -57,7 +57,7 @@ const Records = () => {
                   <tr>
                     <th id="bookID">ISBN</th>
                     <th>Book Title</th>
-                    <th>Student name</th>
+                    <th>Payfines</th>
                     <th>Email</th>
                     <th>Issue Date</th>
                     <th>Return Date</th>

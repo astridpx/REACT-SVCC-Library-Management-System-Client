@@ -31,6 +31,7 @@ const RecordsExpire = () => {
             <td>{props.title}</td>
             <td>{props.stud_no}</td>
             <td className="name-box">{props.name}</td>
+            <td>₱ {props.payfines}</td>
             <td className="email-box">{props.email}</td>
             <td>{new Date(props.issue_date).toDateString()}</td>
             <td>{new Date(props.return_date).toDateString()}</td>
@@ -117,6 +118,7 @@ const RecordsExpire = () => {
               <td>{props.title}</td>
               <td>{props.stud_no}</td>
               <td className="name-box">{props.name}</td>
+              <td>₱ {props.payfines}</td>
               <td className="email-box">{props.email}</td>
               <td>{new Date(props.issue_date).toDateString()}</td>
               <td>{new Date(props.return_date).toDateString()}</td>
@@ -225,6 +227,7 @@ const RecordsExpire = () => {
                     <th>Book Title</th>
                     <th>Student ID</th>
                     <th>Student name</th>
+                    <th>Payfines</th>
                     <th>Email</th>
                     <th>Issue Date</th>
                     <th>Return Date</th>
