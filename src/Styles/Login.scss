@@ -84,7 +84,7 @@
     @include flexCenter(unset);
     text-align: center;
     flex-direction: column;
-    row-gap: 2rem;
+    row-gap: 1rem;
     // align-items: unset;
 
     h2 {
@@ -98,6 +98,20 @@
     }
     p {
       color: $txt-clr1;
+    }
+
+    .dropDown-wrapper {
+      width: 17.5rem;
+
+      .dropDown {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 15px;
+        text-align: center;
+        background-color: #eee;
+        border: 1px solid $txt-clr1;
+        outline: none;
+      }
     }
 
     .formField {
@@ -268,6 +282,20 @@
       }
       p {
         color: $txt-clr1;
+      }
+    }
+    .dropDown-wrapper {
+      width: 17.5rem;
+      margin: 0 auto;
+
+      .dropDown {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 15px;
+        text-align: center;
+        background-color: #eee;
+        border: 1px solid $txt-clr1;
+        outline: none;
       }
     }
 
