@@ -41,7 +41,7 @@ const StudentRegister = () => {
 
   const HandleSubmitSignUp = async (e) => {
     e.preventDefault();
-    setLoader(true);
+    // setLoader(true);
 
     const dataConfig = {
       url: `${process.env.REACT_APP_API_URL}/students/register`,
@@ -72,8 +72,8 @@ const StudentRegister = () => {
             toast.addEventListener("mouseleave", Swal.resumeTimer);
           },
         });
-      })
-      .finally(() => setLoader(false));
+      });
+    // .finally(() => setLoader(false));
   };
 
   return (
@@ -110,7 +110,7 @@ const StudentRegister = () => {
             />
             <img src={StudentLogo} alt="student Logo" className="studentLogo" />
             <h3>Sign Up as Student</h3>
-            {loader && <Loader />}
+            {/* {loader && <Loader />} */}
           </header>
 
           <form

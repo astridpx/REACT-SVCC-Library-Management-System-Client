@@ -23,7 +23,7 @@ const AdminForm = ({ AdminStudentloginForm }) => {
 
   const HandleSubmitAdminLogin = async (e) => {
     e.preventDefault();
-    setLoader(true);
+    // setLoader(true);
     // axios.defaults.withCredentials = true;
     const dataConfig = {
       url: `${process.env.REACT_APP_API_URL}/admin/adminLogin`,
@@ -57,8 +57,8 @@ const AdminForm = ({ AdminStudentloginForm }) => {
             toast.addEventListener("mouseleave", Swal.resumeTimer);
           },
         });
-      })
-      .finally(() => setLoader(false));
+      });
+    // .finally(() => setLoader(false));
   };
 
   return (
@@ -122,7 +122,8 @@ const AdminForm = ({ AdminStudentloginForm }) => {
           </div>
           <div className="inputField">
             <button type="submit" className="btn-signIn" disabled={loader}>
-              {loader ? <Loader /> : "SIGN IN"}
+              {/* {loader ? <Loader /> : "SIGN IN"} */}
+              SIGN IN
             </button>
           </div>
           <div className="bottomForm">
