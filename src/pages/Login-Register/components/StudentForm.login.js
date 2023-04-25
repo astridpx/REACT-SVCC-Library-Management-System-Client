@@ -129,6 +129,7 @@ const Studentform = ({ AdminStudentloginForm }) => {
 
           <button type="submit" className="stud-signIn" disabled={loader}>
             {/* {loader ? <Loader /> : "SIGN IN AS A STUDENT"} */}
+            SIGN IN AS A STUDENT
           </button>
         </form>
 
