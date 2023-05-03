@@ -65,7 +65,7 @@ const Sidebar = (props) => {
     method: "get",
   };
   const url_member = `${process.env.REACT_APP_API_URL}/students/`;
-  const url_applicants = `${process.env.REACT_APP_API_URL}/students/applicants`;
+  const url_applicants = `${process.env.REACT_APP_API_URL}/students/stud/applicants`;
   const url_issue = `${process.env.REACT_APP_API_URL}/allRecords/`;
   const url_books = `${process.env.REACT_APP_API_URL}/books`;
   const url_bargraph = `${process.env.REACT_APP_API_URL}/graph`;
