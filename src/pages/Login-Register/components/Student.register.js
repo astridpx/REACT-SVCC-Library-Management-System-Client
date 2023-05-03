@@ -22,6 +22,7 @@ const StudentRegister = () => {
   const [course, setCourse] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cpassword, setCPassword] = useState("");
   const [loader, setLoader] = useState(false);
 
   const InputRef = useRef();
@@ -52,6 +53,7 @@ const StudentRegister = () => {
         course,
         section,
         email,
+        cpassword,
         password,
       },
     };
@@ -189,6 +191,18 @@ const StudentRegister = () => {
                 autoComplete="off"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="signUp-input">
+              <label htmlFor="password">Confirm Password</label>
+              <input
+                type="password"
+                name="password"
+                required
+                placeholder="Confirm your password"
+                autoComplete="off"
+                value={cpassword}
+                onChange={(e) => setCPassword(e.target.value)}
               />
             </div>
             <div className="signUp-btn-wrap">
