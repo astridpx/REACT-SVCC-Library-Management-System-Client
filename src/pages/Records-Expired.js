@@ -18,7 +18,7 @@ const RecordsExpire = () => {
 
   useEffect(() => {
     let recordCleanup = true;
-    const url = `${process.env.REACT_APP_API_URL}/allRecords/expire-records`;
+    const url = `${process.env.REACT_APP_API_URL}/allRecords/expire/records`;
 
     axios.get(url).then((result) => {
       const resultRecord = result.data.map((props) => {
