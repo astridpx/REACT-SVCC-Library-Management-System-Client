@@ -69,6 +69,10 @@ const Studentform = ({ AdminStudentloginForm }) => {
       .finally(() => setLoader(false));
   };
 
+  const HandleDropdown = (e) => {
+    if (e.target.value === "admin") return AdminStudentloginForm(false);
+  };
+
   return (
     <>
       <div className="student-form-wrapper">
@@ -77,6 +81,13 @@ const Studentform = ({ AdminStudentloginForm }) => {
           <h1>SVCC LIBRARY MANAGEMENT SYSTEM</h1>
           <p>Login to get the books that interest you.</p>
         </header>
+
+        <div className="dropDown-wrapper">
+          <select className="dropDown" onChange={HandleDropdown}>
+            <option value="student">Student</option>
+            <option value="admin"> Admin</option>
+          </select>
+        </div>
 
         <form
           action=""
@@ -144,16 +155,6 @@ const Studentform = ({ AdminStudentloginForm }) => {
               }}
             >
               Sign Up
-            </span>
-          </p>
-          <p className="loginAdmin-txt">
-            Login as
-            <span
-              onClick={() => {
-                AdminStudentloginForm(false);
-              }}
-            >
-              Admin
             </span>
           </p>
         </div>
