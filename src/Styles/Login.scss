@@ -84,7 +84,7 @@
     @include flexCenter(unset);
     text-align: center;
     flex-direction: column;
-    row-gap: 1rem;
+    row-gap: 0.5rem;
     // align-items: unset;
 
     h2 {
@@ -106,7 +106,7 @@
       .dropDown {
         width: 100%;
         padding: 8px 10px;
-        border-radius: 15px;
+        border-radius: 5px;
         text-align: center;
         background-color: #eee;
         border: 1px solid $txt-clr1;
@@ -291,7 +291,7 @@
       .dropDown {
         width: 100%;
         padding: 8px 10px;
-        border-radius: 15px;
+        border-radius: 5px;
         text-align: center;
         background-color: #eee;
         border: 1px solid $txt-clr1;
@@ -301,7 +301,7 @@
 
     // FORM
     .studentForm {
-      padding-top: 1rem;
+      padding-top: 0.5rem;
       row-gap: 0;
       height: max-content;
 
