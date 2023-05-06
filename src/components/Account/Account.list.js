@@ -8,7 +8,7 @@ import { Toast } from "../SweetAlert/SweetAlert";
 import { useSelector } from "react-redux";
 
 export const AccountList = () => {
-  const email = useSelector((state) => state.userAcc.email);
+  const email = localStorage.getItem("userEmail");
   // const profile = useSelector((state) => state.userAcc.profileImg);
   const [accountList, setAccountList] = useState("");
 
@@ -34,8 +34,7 @@ export const AccountList = () => {
             Toast.fire({
               icon: "success",
               title: result.data.message,
-            });
-            // .then(() => window.location.reload(false));
+            }).then(() => window.location.reload(false));
           })
           .catch((err) => {
             if (err) {

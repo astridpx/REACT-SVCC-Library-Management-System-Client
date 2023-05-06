@@ -17,7 +17,7 @@ import Book from "./pages/Books";
 import AvailableBooks from "./pages/AvailableBooks";
 import AllRecord from "./pages/Records";
 import ExpireRecord from "./pages/Records-Expired";
-import Account from "./pages/Accounts";
+// import Account from "./pages/Accounts";
 import Profile from "./pages/Profile";
 
 // STUDENT
