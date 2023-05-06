@@ -15,11 +15,11 @@ const Login = () => {
   const showSignUpValue = useSelector(
     (state) => state.showHideSignUp.signUpShowValue
   );
-  const [showStudForm, setShowStudForm] = useState(false);
+  const [showForm, setShowForm] = useState("admin1");
 
   // SHOW HIDE ADMIN STUDENT LOGIN FORM
   const AdminStudentloginForm = (value) => {
-    setShowStudForm(value);
+    setShowForm(value);
   };
 
   useEffect(() => {
@@ -40,10 +40,10 @@ const Login = () => {
             ) : (
               <div className="loginform-wrapper">
                 {/* FORMS */}
-                {!showStudForm ? (
-                  <AdminForm AdminStudentloginForm={AdminStudentloginForm} />
-                ) : (
+                {showForm === "student" ? (
                   <Studentform AdminStudentloginForm={AdminStudentloginForm} />
+                ) : (
+                  <AdminForm AdminStudentloginForm={AdminStudentloginForm} />
                 )}
 
                 {/* <div className="login-rightBox"></div> */}

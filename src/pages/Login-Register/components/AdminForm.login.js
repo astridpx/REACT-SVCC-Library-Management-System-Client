@@ -14,6 +14,7 @@ const AdminForm = ({ AdminStudentloginForm }) => {
   const [password, setPassword] = useState("");
   const [showHide, setShowHide] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [path, setPath] = useState("/admin/adminLogin");
 
   const navigate = useNavigate();
   // SHOW HIDE PASSWORD FUNCTION
@@ -26,7 +27,7 @@ const AdminForm = ({ AdminStudentloginForm }) => {
     // setLoader(true);
     // axios.defaults.withCredentials = true;
     const dataConfig = {
-      url: `${process.env.REACT_APP_API_URL}/admin/adminLogin`,
+      url: `${process.env.REACT_APP_API_URL}${path}`,
       method: "POST",
       data: {
         email,
@@ -46,7 +47,11 @@ const AdminForm = ({ AdminStudentloginForm }) => {
             localStorage.setItem("userEmail", result.data.email);
             localStorage.setItem("role", result.data.role);
           })
-          .then(() => navigate("/"));
+          .then(() => {
+            path === "/system-admin/login"
+              ? navigate("/system-admin/Booklist")
+              : navigate("/");
+          });
       })
       .catch((error) => {
         Toast.fire({
@@ -62,7 +67,8 @@ const AdminForm = ({ AdminStudentloginForm }) => {
   };
 
   const HandleDropdown = (e) => {
-    if (e.target.value === "student") return AdminStudentloginForm(true);
+    if (e.target.value === "student") return AdminStudentloginForm("student");
+    if (e.target.value === "admin2") return setPath("/system-admin/login");
   };
 
   return (
@@ -81,6 +87,7 @@ const AdminForm = ({ AdminStudentloginForm }) => {
         <div className="dropDown-wrapper">
           <select className="dropDown" onChange={HandleDropdown}>
             <option value="admin"> Admin</option>
+            <option value="admin2">System Admin</option>
             <option value="student">Student</option>
           </select>
         </div>

@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // ? Protected Routes
 import PrivateRoutes from "./utils/PrivateRoutes";
 import AdminRoutes from "./utils/AdminPrivateRoutes";
+import SystemAdminPrivateRoutes from "./utils/SystemAdminPrivateRoutes";
 import StudentRoutes from "./utils/StudentPrivateRoutes";
 
 // pages
@@ -27,6 +28,10 @@ import BooklistStudent from "./STUDENT/Booklist.student";
 import StudentProfile from "./STUDENT/Myaccount.student";
 import StudentRecords from "./STUDENT/Student.records";
 
+// SYSTEM ADMIN
+import Booklist from "./SYSTEM-ADMIN/BookList";
+import Accountlist from "./SYSTEM-ADMIN/Accounts";
+
 // LOGIN REGISTER
 import Login from "./pages/Login-Register/Login";
 
@@ -41,7 +46,15 @@ function App() {
             <Route
               path="/"
               exact
-              element={role === "student" ? <StudentRecords /> : <Dashboard />}
+              element={
+                role === "student" ? (
+                  <StudentRecords />
+                ) : role === "systemAdmin" ? (
+                  <Booklist />
+                ) : (
+                  <Dashboard />
+                )
+              }
             />
 
             {/* STUDENT */}
@@ -82,8 +95,17 @@ function App() {
                 exact
                 element={<ExpireRecord />}
               />
-              <Route path="/Accounts" exact element={<Account />} />
+              {/* <Route path="/Accounts" exact element={<Account />} /> */}
               <Route path="/Profile" exact element={<Profile />} />
+            </Route>
+
+            {/* SYSTEM ADMIN */}
+            <Route element={<SystemAdminPrivateRoutes />}>
+              <Route path="/system-admin/Booklist" element={<Booklist />} />
+              <Route
+                path="/system-admin/Accountlist"
+                element={<Accountlist />}
+              />
             </Route>
           </Route>
 

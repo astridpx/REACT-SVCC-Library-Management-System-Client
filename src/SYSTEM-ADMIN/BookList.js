@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
 // import "../Css/Books.css";
 import "../Styles/Books.scss";
 import { Toast } from "../components/SweetAlert/SweetAlert";
@@ -34,6 +34,33 @@ const Books = () => {
     );
   };
 
+  // SHOW / HIDE ADD FORM COMPONENT
+  const handleForm = () => {
+    setShowForm(true);
+    setBtnHide(0);
+  };
+  const hideForm = (value) => {
+    setShowForm(value);
+  };
+
+  // SHOW / HIDE EDIT FORM COMPONENT
+  // PASSING THE DATE INTO EDIT FORM COMPONENT {CHILD COMPONENT}
+  const handleEditForm = (props) => {
+    setEditForm(true);
+    setEditData([
+      {
+        id: props.BOOK_ID,
+        author: props.author,
+        isbn: props.isbn,
+        title: props.title,
+        publish: props.published_date,
+      },
+    ]);
+  };
+  const hideEditForm = (valueEdit, dataToUpdate) => {
+    setEditForm(valueEdit);
+  };
+
   // GET BOOKLIST API Integration
   // axios.default.withCredentials = true;
   useEffect(() => {
@@ -51,7 +78,7 @@ const Books = () => {
               <td>{props.title}</td>
               <td className="author-box">{props.author}</td>
               <td>{props.published_date}</td>
-              <td className="action1">
+              {/* <td className="action1">
                 <button
                   id="view"
                   onClick={() => {
@@ -63,6 +90,14 @@ const Books = () => {
                 </button>
                 <button id="download" onClick={() => DownloadQr(props.isbn)}>
                   Save
+                </button>
+              </td> */}
+              <td className="action2">
+                <button id="edit" onClick={() => handleEditForm(props)}>
+                  Edit
+                </button>
+                <button id="delete" onClick={() => DeleteBook(props)}>
+                  Delete
                 </button>
               </td>
             </tr>
@@ -93,7 +128,7 @@ const Books = () => {
               <td>{props.title}</td>
               <td className="author-box">{props.author}</td>
               <td>{props.published_date}</td>
-              <td className="action1">
+              {/* <td className="action1">
                 <button
                   id="view"
                   onClick={() => {
@@ -106,6 +141,14 @@ const Books = () => {
                 <button id="download" onClick={() => DownloadQr(props.isbn)}>
                   Save
                 </button>
+              </td> */}
+              <td className="action2">
+                <button id="edit" onClick={() => handleEditForm(props)}>
+                  Edit
+                </button>
+                <button id="delete" onClick={() => DeleteBook(props)}>
+                  Delete
+                </button>
               </td>
             </tr>
           );
@@ -113,6 +156,41 @@ const Books = () => {
         setBookSearch(booksfilter);
       })
       .catch((err) => console.log(err));
+  };
+
+  // DELETE API INTEGRATION
+  const DeleteBook = (props) => {
+    const configData = {
+      method: "delete",
+      url: `${process.env.REACT_APP_API_URL}/books/deleteBook/${props.BOOK_ID}`,
+    };
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // API DELETE INTEGRATION
+        axios(configData)
+          .then((res) => Swal.fire("Deleted!", res.data, "success"))
+          .then(() => window.location.reload(false))
+          .catch((error) => {
+            Toast.fire({
+              icon: "error",
+              title: error.response.data.message,
+              didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              },
+            });
+          });
+      }
+    });
   };
 
   return (
@@ -127,7 +205,10 @@ const Books = () => {
       </div>
       <Navbar />
       {/* show hide form */}
-
+      {showForm && <FormAdd hideForm={hideForm} />}
+      {showEditForm && (
+        <EditBookForm hideEditForm={hideEditForm} data={editData} />
+      )}
       <div className="books-container">
         <div className="nav-side">
           <Sidebar books="active" />
@@ -159,6 +240,14 @@ const Books = () => {
               </div>
             </header>
             <div className="table-section">
+              {/* Button add */}
+              <button
+                id="btn-add"
+                onClick={handleForm}
+                style={{ opacity: showForm && btnHide }} // if the form is show(true) the button add will hide
+              >
+                <GrAdd />
+              </button>
               <table>
                 <thead>
                   <tr>
@@ -166,7 +255,8 @@ const Books = () => {
                     <th>Book Title</th>
                     <th>Author</th>
                     <th>Date Published</th>
-                    <th>Action </th>
+                    {/* <th>Action 1</th> */}
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>

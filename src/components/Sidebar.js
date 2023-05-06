@@ -237,12 +237,12 @@ const Sidebar = (props) => {
               </li>
             </div>
 
-            <li>
+            {/* <li>
               <BsPeople className="icons" id={props.account} />
               <Link to="/Accounts" id={props.account}>
                 Accounts
               </Link>
-            </li>
+            </li> */}
             <li>
               <RiAccountCircleLine className="icons" id={props.profile} />
               <Link to="/Profile" id={props.profile}>

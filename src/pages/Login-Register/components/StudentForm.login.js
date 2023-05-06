@@ -70,7 +70,8 @@ const Studentform = ({ AdminStudentloginForm }) => {
   };
 
   const HandleDropdown = (e) => {
-    if (e.target.value === "admin") return AdminStudentloginForm(false);
+    if (e.target.value === "admin") return AdminStudentloginForm("admin");
+    if (e.target.value === "admin2") return AdminStudentloginForm("admin2");
   };
 
   return (
@@ -86,6 +87,7 @@ const Studentform = ({ AdminStudentloginForm }) => {
           <select className="dropDown" onChange={HandleDropdown}>
             <option value="student">Student</option>
             <option value="admin"> Admin</option>
+            <option value="admin2">System Admin</option>
           </select>
         </div>
 
