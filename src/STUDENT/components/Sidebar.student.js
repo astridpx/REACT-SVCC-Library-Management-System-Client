@@ -92,12 +92,12 @@ const StudentSidebar = (props) => {
                 My Records
               </Link>
             </li>
-            <li>
+            {/* <li>
               <BiBookBookmark className="icons" id={props.issue} />
               <Link to="/student/issue" id={props.issue}>
                 Issue Book
               </Link>
-            </li>
+            </li> */}
             {/* <li>
               <GiBlackBook className="icons" id={props.return} />
               <Link to="/student/return" id={props.return}>
