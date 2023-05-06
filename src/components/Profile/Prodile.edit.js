@@ -108,7 +108,7 @@ export const ProfileEdit = (props) => {
           <input
             type="text"
             placeholder="Enter name"
-            defaultValue={"Admin"}
+            defaultValue={"Librarian"}
             readOnly
           />
         </div>
