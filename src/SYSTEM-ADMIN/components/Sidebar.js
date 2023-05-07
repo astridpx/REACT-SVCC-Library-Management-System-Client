@@ -42,7 +42,7 @@ const Sidebar = (props) => {
           <div className="image-box">
             <img src={Profile} alt="profile" />
           </div>
-          <h3>System-Admin</h3>
+          <h3>Admin</h3>
         </div>
         <div className="sidebar">
           <ul>

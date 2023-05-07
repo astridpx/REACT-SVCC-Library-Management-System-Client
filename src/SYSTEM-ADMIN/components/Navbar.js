@@ -61,7 +61,7 @@ const Navbar = () => {
             {/* <AiOutlineClose id="menu-close" /> */}
             <div className="profile">
               <img src={Profile} alt="" />
-              <h3>System-Admin</h3>
+              <h3>Admin</h3>
             </div>
             <ul>
               <li>
