@@ -74,10 +74,10 @@ const Navbar = () => {
                 <HiOutlineDocumentReport className="icons" />
                 <Link to="/Student-records">My Records</Link>
               </li>
-              {/* <li>
+              <li>
                 <BiBookBookmark className="icons" />
                 <Link to="/student/issue">Issue Book</Link>
-              </li> */}
+              </li>
               {/* <li>
                 <GiBlackBook className="icons" />
                 <Link to="/student/return">Return Book</Link>

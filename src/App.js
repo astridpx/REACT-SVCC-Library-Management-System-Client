@@ -65,7 +65,7 @@ function App() {
                 exact
                 element={<StudentRecords />}
               />
-              {/* <Route path="/student/issue" exact element={<IssueStudent />} /> */}
+              <Route path="/student/issue" exact element={<IssueStudent />} />
               <Route
                 path="/student/profile"
                 exact
