@@ -19,8 +19,10 @@ const StudentRegister = () => {
   const [studId, setStudId] = useState("");
   const [name, setName] = useState("");
   const [section, setSection] = useState("");
+  const [year, setYear] = useState("");
   const [course, setCourse] = useState("");
   const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCPassword] = useState("");
   const [loader, setLoader] = useState(false);
@@ -158,6 +160,18 @@ const StudentRegister = () => {
               />
             </div>
             <div className="signUp-input">
+              <label htmlFor="year">Year</label>
+              <input
+                type="text"
+                placeholder="Enter your year"
+                autoComplete="off"
+                required
+                name="year"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+              />
+            </div>
+            <div className="signUp-input">
               <label htmlFor="course">Course</label>
               <input
                 type="text"
@@ -167,6 +181,18 @@ const StudentRegister = () => {
                 autoComplete="off"
                 value={course}
                 onChange={(e) => setCourse(e.target.value.toUpperCase())}
+              />
+            </div>
+            <div className="signUp-input">
+              <label htmlFor="mobile">Mobile</label>
+              <input
+                type="text"
+                name="mobile"
+                required
+                placeholder="Enter your mobile"
+                autoComplete="off"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
               />
             </div>
             <div className="signUp-input">
