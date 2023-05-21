@@ -86,7 +86,7 @@ const AdminForm = ({ AdminStudentloginForm }) => {
 
         <div className="dropDown-wrapper">
           <select className="dropDown" onChange={HandleDropdown}>
-            <option value="admin"> Admin</option>
+            <option value="admin">Librarian</option>
             <option value="admin2">System Admin</option>
             <option value="student">Student</option>
           </select>
