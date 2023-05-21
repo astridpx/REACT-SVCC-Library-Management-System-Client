@@ -19,7 +19,7 @@ const IssueBook = () => {
   const [studId, setStudId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [issueDate, setIssueDate] = useState("");
+  const [department, setDepartment] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [scan, setScan] = useState(false);
 
@@ -52,7 +52,7 @@ const IssueBook = () => {
       studId,
       name,
       email,
-      issueDate,
+      department,
       returnDate,
     },
   };
@@ -175,6 +175,16 @@ const IssueBook = () => {
               />
             </div>
             <div className="issue-field">
+              <label htmlFor="department">Department</label>
+              <input
+                type="text"
+                id="department"
+                placeholder="Enter department"
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+              />
+            </div>
+            <div className="issue-field">
               <label htmlFor="name">Name</label>
               <input
                 type="text"
@@ -198,15 +208,7 @@ const IssueBook = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="issue-field">
-              <label htmlFor="dateIssue">Issue</label>
-              <input
-                type="date"
-                id="dateIssue"
-                value={issueDate}
-                onChange={(e) => setIssueDate(e.target.value)}
-              />
-            </div>
+
             <div className="issue-field">
               <label htmlFor="dateReturn">Return</label>
               <input
